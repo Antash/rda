@@ -24,9 +24,12 @@ namespace RDA
 			ucFuncAnalysis5.DispFunc = noize1F;
 			var noize2F = new Func(FuncHelper.Noise2());
 			ucFuncAnalysis6.DispFunc = noize2F;
-			var cardiogram = new Cardio();
+			var cardiogram = new Convolution();
 			var cardio = new Func(cardiogram.Result());
 			ucFuncAnalysis7.DispFunc = cardio;
+			var deconvolution = new Deconvolution();
+			var deconv = new Func(deconvolution.Result(cardiogram.Result(), Convolution.Fh()));
+			ucFuncAnalysis8.DispFunc = deconv;
 		}
 	}
 }
