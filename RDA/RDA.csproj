@@ -50,6 +50,7 @@
     <Compile Include="Convolution.cs" />
     <Compile Include="Complex.cs" />
     <Compile Include="Deconvolution.cs" />
+    <Compile Include="Filter.cs" />
     <Compile Include="FrmFuncViewer.cs">
       <SubType>Form</SubType>
     </Compile>
