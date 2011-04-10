@@ -9,7 +9,8 @@ namespace RDA
 	{
 		public double[] Result(double[] inp, double[] fh)
 		{
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
+			return FuncHelper.Noise1();
 		}
 	}
 }
