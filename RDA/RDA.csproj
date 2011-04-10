@@ -47,8 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cardio.cs" />
+    <Compile Include="Convolution.cs" />
     <Compile Include="Complex.cs" />
+    <Compile Include="Deconvolution.cs" />
     <Compile Include="FrmFuncViewer.cs">
       <SubType>Form</SubType>
     </Compile>
