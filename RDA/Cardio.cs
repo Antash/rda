@@ -7,73 +7,60 @@ namespace RDA
 {
 	class Cardio
 	{
-		private const double Scale = 300;
-		private const int Np = 75;
-		private const double pP = 100;
-		private const double eps = 0.01; 
+		private const double Dt = 0.005;
+		private const double Tx = 5;
+		private const int Nx = (int) (Tx / Dt);
+		private const int R = (int) (1 / Dt);
+		private const double Tp = 0.25;
+		private const int Np = (int) (Tp / Dt);
+		private const double Arg = 2 * Math.PI * Dt;
+		private const double PsistAvg = 120;
+		private const double PdiastAvg = 80;
+		private const int Ny = Nx + Np;
 
-		public double [] Result()
+		private static readonly Random Rand = new Random();
+
+		static double[] Fh()
 		{
-			var res = new double[FuncHelper.N];
-			P(ref res);
-			Q(ref res);
-			H(ref res); 
-			S(ref res);
-			T(ref res);
-			U(ref res);
+			var res = new double[Np];
+
+			for (int i = 0; i < Np; i++)
+				res[i] = Math.Sin(Arg * i / Tp) * Math.Exp(-0.1 * i);
 			return res;
 		}
-		private static void P(ref double [] x)
+
+		static double[] Fx()
 		{
-			for (int i = 0; i < x.Length; i++)
+			var res = new double[Nx];
+
+			for (int i = 0; i < Nx; i++)
 			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, (int) (i % (60 * Scale / Np)));
+				if (i % R == 0)
+					res[i] = PsistAvg + (1 - Rand.NextDouble())*PsistAvg*0.05;
+				else if ((i - Tp*R) % R == 0)
+					res[i] = -PdiastAvg + (1 - Rand.NextDouble()) * PdiastAvg * 0.05;
+				else
+					res[i] = 0;
 			}
+
+			return res;
 		}
-		private static void Q(ref double[] x)
+
+		public double[] Result()
 		{
-			for (int i = 0; i < x.Length; i++)
+			var y = new double[Ny];
+			var x = Fx();
+			var h = Fh();
+
+			for (int i = 0; i < Ny && i < Nx; i++)
 			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, i);
+				double t = 0;
+				for (int j = 0; j < i && j < Np; j++)
+					t += h[j] * x[i - j];
+				y[i] = t;
 			}
-		}
-		private static void H(ref double[] x)
-		{
-			for (int i = 0; i < x.Length; i++)
-			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, i);
-			}
-		}
-		private static void S(ref double[] x)
-		{
-			for (int i = 0; i < x.Length; i++)
-			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, i);
-			}
-		}
-		private static void T(ref double[] x)
-		{
-			for (int i = 0; i < x.Length; i++)
-			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, i);
-			}
-		}
-		private static void U(ref double[] x)
-		{
-			for (int i = 0; i < x.Length; i++)
-			{
-				if (i % (60 * Scale / Np) == 0)
-					Pspike(ref x, i);
-			}
-		}
-		private static void Pspike(ref double [] x, int i)
-		{
 			
+			return y;
 		}
 	}
 }
