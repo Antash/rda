@@ -271,6 +271,33 @@ namespace RDA
 			return (f.Fx[1].Max() - f.Fx[1].Min());
 		}
 		
+		public struct CplxF
+		{
+			public double X;
+			public Complex Fx;
+
+			public CplxF(double x, Complex fx)
+			{
+				X = x;
+				Fx = fx;
+			}
+		}
+
+		public static CplxF[] Fourie(double[][] fx)
+		{
+			const int ns = 1000;
+			var res = new CplxF[ns];
+			for (int i = 0; i < ns; i++)
+			{
+				res[i].X = i / 2.0 / Math.PI;
+				double a;
+				double b;
+				FourieKoef(fx, i, out a, out b);
+				res[i].Fx = new Complex(a, b);
+			}
+			return res;
+		}
+
 		public static double[][] SpectralAnalysis(double[][] fx)
 		{
 			var res = new double[2][];
