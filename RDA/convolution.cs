@@ -17,7 +17,7 @@ namespace RDA
 
 		private static readonly Random Rand = new Random();
 
-		public static double[] Fh()
+		public double[] Fh()
 		{
 			var res = new double[Ny];
 			for (int i = 0; i < Np; i++)
@@ -25,6 +25,16 @@ namespace RDA
 			return res;
 		}
 
+		public double[][] Fh(bool f)
+		{
+			var res = new double[2][];
+			res[0] = new double[FuncHelper.N];
+			res[1] = Fh();
+			for (int i = 0; i < FuncHelper.N; i++)
+				res[0][i] = i;
+			return res;
+		}
+		
 		static double[] Fx()
 		{
 			var res = new double[Ny];
@@ -40,6 +50,18 @@ namespace RDA
 			return res;
 		}
 
+		public double[][] Result(bool f)
+		{
+			var res = new double[2][];
+			res[0] = new double[FuncHelper.N];
+			res[1] = Result();
+
+			for (int j = 0; j < FuncHelper.N; j++)
+				res[0][j] = j;
+
+			return res;
+		}
+		
 		public double[] Result()
 		{
 			var y = new double[Ny];

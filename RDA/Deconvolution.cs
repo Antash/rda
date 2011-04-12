@@ -7,10 +7,15 @@ namespace RDA
 {
 	class Deconvolution
 	{
-		public double[] Result(double[] inp, double[] fh)
+		public double[] Result(double[] inp, Convolution conv)
 		{
-			//throw new NotImplementedException();
-			return FuncHelper.Noise1();
+			var h = conv.Fh(true);
+			var y = conv.Result(true);
+			
+			var hFourie = FuncHelper.SpectralAnalysis(h);
+			var yFourie = FuncHelper.SpectralAnalysis(y);
+			
+			return yFourie[1];
 		}
 	}
 }
