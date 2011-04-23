@@ -152,11 +152,12 @@ namespace RDA
 		//сдвиг, возвращает значение функции автокорреляции
 		private static double Ac(double[] fx, int m)
 		{
-			double s = 0;
-			double sz = M(fx);
-			for (int i = 0; i + m < N; i++)
-				s += (fx[i] - sz)*(fx[i + m] - sz);
-			return s/N;
+			//double s = 0;
+			//double sz = M(fx);
+			//for (int i = 0; i + m < N; i++)
+			//    s += (fx[i] - sz)*(fx[i + m] - sz);
+			//return s/N;
+			return 0;
 		}
 
 		//сдвиг, возвращает значение функции взаимной автокорреляции
@@ -281,6 +282,20 @@ namespace RDA
 				X = x;
 				Fx = fx;
 			}
+		}
+
+		public static Complex[] Fourie(double[] fx)
+		{
+			const int ns = 1000;
+			var res = new Complex[ns];
+			//for (int i = 0; i < ns; i++)
+			//{
+			//    double a;
+			//    double b;
+			//    FourieKoef(fx, i, out a, out b);
+			//    res[i].Fx = new Complex(a, b);
+			//}
+			return res;
 		}
 
 		public static CplxF[] Fourie(double[][] fx)

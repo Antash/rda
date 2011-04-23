@@ -31,8 +31,13 @@ namespace RDA
 			var deconv = new Func (deconvolution.Result (cardiogram.Result (), cardiogram));
 			ucFuncAnalysis8.DispFunc = deconv;
 			var fil = new Filter();
-			var filter = new Func (fil.Result (1, 1000, 0.01));
+			var filter = new Func(fil.Result(1, 1000, 0.01));
 			ucFuncAnalysis9.DispFunc = filter;
+			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
+				new[] { 50, 5, 150.0 },
+				new[] { 75.0, 15, 25 },
+				0.001)[1], fil.Result(1, 1000, 0.01)));
+			ucFuncAnalysis10.DispFunc = filtered;
 		}
 	}
 }
