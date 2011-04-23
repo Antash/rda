@@ -19,7 +19,7 @@ namespace RDA
 
 		public double[] Fh()
 		{
-			var res = new double[Ny];
+			var res = new double[Np];
 			for (int i = 0; i < Np; i++)
 				res[i] = Math.Sin(Arg * i / Tp) * Math.Exp(-0.1 * i);
 			return res;
@@ -37,7 +37,7 @@ namespace RDA
 		
 		static double[] Fx()
 		{
-			var res = new double[Ny];
+			var res = new double[Nx];
 
 			for (int i = 0; i < Nx; i++)
 			{
@@ -64,24 +64,7 @@ namespace RDA
 		
 		public double[] Result()
 		{
-			var y = new double[Ny];
-			var x = Fx();
-			var h = Fh();
-
-			for (int i = 0; i < Ny; i++)
-			{
-				double t = 0;
-				for (int j = 0; j < i; j++)
-					t += h[j] * x[i - j];
-				y[i] = t;
-			}
-
-			var res = new double[FuncHelper.N];
-
-			for (int i = 0, j = Np / 2; i < FuncHelper.N; i++, j++)
-				res[i] = y[j];
-
-			return res;
+			return Algorithms.Convolution(Fx(), Fh());
 		}
 	}
 }
