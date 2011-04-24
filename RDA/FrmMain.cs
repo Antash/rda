@@ -13,12 +13,17 @@ namespace RDA
 			ucFuncAnalysis1.DispFunc = fun2;
 			var fun3 = new Func (FuncHelper.Func3 ());
 			ucFuncAnalysis2.DispFunc = fun3;
-			var polyharmFun = new Func (
-				Algorithms.FastReverseFourierTransform(
-			Algorithms.FastFourierTransformCplx(FuncHelper.Polyharm(
+			//var polyharmFun = new Func(
+			//    Algorithms.SlowReverseFourierTransform(
+			//Algorithms.SlowFourierTransformCplx(FuncHelper.Polyharm(
+			//    new[] { 50, 5, 150.0 },
+			//    new[] { 75.0, 15, 25 },
+			//    0.001)[1])));
+
+			var polyharmFun = new Func(FuncHelper.Polyharm(
 				new[] { 50, 5, 150.0 },
 				new[] { 75.0, 15, 25 },
-				0.001)[1])));
+				0.001));
 			ucFuncAnalysis3.DispFunc = polyharmFun;
 			var harmFun = new Func (FuncHelper.Harm (50, 25, 0.001));
 			ucFuncAnalysis4.DispFunc = harmFun;
@@ -38,7 +43,7 @@ namespace RDA
 			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
 				new[] { 50, 5, 150.0 },
 				new[] { 75.0, 15, 25 },
-				0.001)[1], fil.Result(1, 1000, 0.01)));
+				0.001)[1], fil.Result(1, 100, 0.1)));
 			ucFuncAnalysis10.DispFunc = filtered;
 		}
 	}

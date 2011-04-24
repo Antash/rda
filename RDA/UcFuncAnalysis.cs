@@ -163,7 +163,7 @@ namespace RDA
 
 		private void bfft_Click(object sender, EventArgs e)
 		{
-			new FrmFuncViewer(GBuilder.MakeGraph(FuncHelper.SpectralAnalysis(dispFunc.Fx))).Show();
+			new FrmFuncViewer(GBuilder.MakeGraph(new Func(Algorithms.SlowFourierTransform(dispFunc.Fx[1])).Fx)).Show();
 		}
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
