@@ -13,10 +13,12 @@ namespace RDA
 			ucFuncAnalysis1.DispFunc = fun2;
 			var fun3 = new Func (FuncHelper.Func3 ());
 			ucFuncAnalysis2.DispFunc = fun3;
-			var polyharmFun = new Func (FuncHelper.Polyharm (
+			var polyharmFun = new Func (
+				Algorithms.FastReverseFourierTransform(
+			Algorithms.FastFourierTransformCplx(FuncHelper.Polyharm(
 				new[] { 50, 5, 150.0 },
 				new[] { 75.0, 15, 25 },
-				0.001));
+				0.001)[1])));
 			ucFuncAnalysis3.DispFunc = polyharmFun;
 			var harmFun = new Func (FuncHelper.Harm (50, 25, 0.001));
 			ucFuncAnalysis4.DispFunc = harmFun;

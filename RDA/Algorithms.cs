@@ -1,13 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RDA
 {
 	class Algorithms
 	{
-		public static Complex[] SlowFurieTransformCplx(double[] f)
+		public static Complex[] FastReverseFourierTransformCplx(Complex[] f)
+		{
+			var nn = (int)Math.Pow(2, Math.Floor(Math.Log(f.Length) / Math.Log(2)));
+
+			var res = Fft(f, nn, true);
+
+			return res;
+		}
+
+		public static double[] FastReverseFourierTransform(Complex[] f)
+		{
+			var cplxRes = FastReverseFourierTransformCplx(f);
+
+			var res = new double[cplxRes.Length];
+
+			for (int i = 0; i < res.Length; i++)
+				res[i] = cplxRes[i].Real + cplxRes[i].Imag;
+
+			return res;
+		}
+
+		private static Complex[] Fft(double[] f, int nn, bool reverce)
+		{
+			var cplxf = new Complex[f.Length];
+
+			for (int i = 0; i < f.Length; i++)
+				cplxf[i] = new Complex(f[i], 0);
+
+			return Fft(cplxf, nn, reverce);
+		}
+
+		private static Complex[] Fft(Complex[] f, int nn, bool reverce)
+		{
+			var data = new double[2 * nn + 1];
+			double tempr;
+
+			int isign = reverce ? 1 : -1;
+
+			for (int k = 0; k < nn; k++)
+			{
+				data[k * 2] = f[k].Imag;
+				data[k * 2 + 1] = f[k].Real;
+			}
+
+			int n = nn * 2;
+			int m;
+			int i = 1;
+			int j = 1;
+			while (i < n)
+			{
+				if (j > i)
+				{
+					tempr = data[i];
+					data[i] = data[j];
+					data[j] = tempr;
+					tempr = data[i + 1];
+					data[i + 1] = data[j + 1];
+					data[j + 1] = tempr;
+				}
+				m = n / 2;
+				while ((m >= 2) && (j > m))
+				{
+					j = j - m;
+					m = m / 2;
+				}
+				j = j + m;
+				i = i + 2;
+			}
+
+			int mmax = 2;
+			while (n > mmax)
+			{
+				int istep = 2 * mmax;
+				double theta = 2.0 * Math.PI / (isign * mmax);
+				double wtemp = Math.Sin(0.5 * theta);
+				double wpr = -2.0 * wtemp * wtemp;
+				double wpi = Math.Sin(theta);
+				double wr = 1.0;
+				double wi = 0.0;
+				m = 1;
+				while (m < mmax)
+				{
+					i = m;
+					while (i < n)
+					{
+						j = i + mmax;
+						tempr = wr * data[j] - wi * data[j + 1];
+						double tempi = wr * data[j + 1] + wi * data[j];
+						data[j] = data[i] - tempr;
+						data[j + 1] = data[i + 1] - tempi;
+						data[i] = data[i] + tempr;
+						data[i + 1] = data[i + 1] + tempi;
+						i = i + istep;
+					}
+					wtemp = wr;
+					wr = wtemp * wpr - wi * wpi + wr;
+					wi = wi * wpr + wtemp * wpi + wi;
+					m = m + 2;
+				}
+				mmax = istep;
+			}
+			var res = new Complex[nn];
+
+			for (i = 0; i < nn; i++)
+			{
+				res[i] = new Complex
+				{
+					Real = reverce ? data[i * 2 + 1] / nn : data[i * 2 + 1],
+					Imag = reverce ? data[i * 2] / nn : data[i * 2]
+				};
+			}
+
+			return res;
+		}
+
+		public static Complex[] FastFourierTransformCplx(double[] f)
+		{
+			var nn = (int)Math.Pow(2, Math.Floor(Math.Log(f.Length) / Math.Log(2)));
+
+			return Fft(f, nn, false);
+		}
+
+		public static double[] FastFourierTransform(double[] f)
+		{
+			var cplxres = FastFourierTransformCplx(f);
+			var res = new double[cplxres.Length / 2];
+
+			for (int i = 0; i < res.Length; i++)
+				res[i] = cplxres[i].Abs;
+
+			return res;
+		}
+
+		public static Complex[] SlowFourierTransformCplx(double[] f)
 		{
 			var res = new Complex[f.Length];
 			double arg = 2 * Math.PI / f.Length;
@@ -24,18 +155,18 @@ namespace RDA
 			return res;
 		}
 
-		public static double[] SlowFurieTransform(double[] f)
+		public static double[] SlowFourierTransform(double[] f)
 		{
-			var cplxRes = SlowFurieTransformCplx(f);
-			var res = new double[f.Length];
+			var cplxRes = SlowFourierTransformCplx(f);
+			var res = new double[f.Length / 2];
 
 			for (int i = 0; i < res.Length; i++)
-				res[i] = cplxRes[i].Abs / f.Length;
+				res[i] = cplxRes[i].Abs;
 
 			return res;
 		}
 
-		public static Complex[] SlowReverseFurieTransformCplx(Complex[] f)
+		public static Complex[] SlowReverseFourierTransformCplx(Complex[] f)
 		{
 			var res = new Complex[f.Length];
 			double arg = 2 * Math.PI / f.Length;
@@ -55,9 +186,9 @@ namespace RDA
 			return res;
 		}
 
-		public static double[] SlowReverseFurieTransform(Complex[] f)
+		public static double[] SlowReverseFourierTransform(Complex[] f)
 		{
-			var cplxRes = SlowReverseFurieTransformCplx(f);
+			var cplxRes = SlowReverseFourierTransformCplx(f);
 			var res = new double[cplxRes.Length];
 
 			for (int i = 0; i < res.Length; i++)
@@ -87,35 +218,65 @@ namespace RDA
 			return res;
 		}
 
-		private const double Alpha = 0.1;
-
-		public static double[] Deconvolution(double[] y, double[] h)
+		public static double[] SlowDeconvolution(double[] y, double[] h)
 		{
-			var H = SlowFurieTransformCplx(h.Concat(new double[y.Length - h.Length]).ToArray());
-			var Y = SlowFurieTransformCplx(y);
-			var G = new Complex[H.Length];
-			var X = new Complex[Y.Length];
+			const double alpha = 0.1;
+			var hs = SlowFourierTransformCplx(h.Concat(new double[y.Length - h.Length]).ToArray());
+			var ys = SlowFourierTransformCplx(y);
+			var hrev = new Complex[hs.Length];
+			var xs = new Complex[ys.Length];
 
-			for (int i = 0; i < H.Length; i++)
+			for (int i = 0; i < hs.Length; i++)
 			{
-				double div = H[i].Abs * H[i].Abs + Alpha * Alpha;
-				G[i] = new Complex
+				double div = hs[i].Abs * hs[i].Abs + alpha * alpha;
+				hrev[i] = new Complex
 						{
-							Real = H[i].Real / div,
-							Imag = -H[i].Imag / div
+							Real = hs[i].Real / div,
+							Imag = -hs[i].Imag / div
 						};
 			}
 
-			for (int i = 0; i < X.Length; i++)
+			for (int i = 0; i < xs.Length; i++)
 			{
-				X[i] = new Complex
+				xs[i] = new Complex
 						{
-							Real = Y[i].Real * G[i].Real - Y[i].Imag * G[i].Imag,
-							Imag = Y[i].Real * G[i].Imag + Y[i].Imag * G[i].Real
+							Real = ys[i].Real * hrev[i].Real - ys[i].Imag * hrev[i].Imag,
+							Imag = ys[i].Real * hrev[i].Imag + ys[i].Imag * hrev[i].Real
 						};
 			}
 
-			return SlowReverseFurieTransform(X);
+			return SlowReverseFourierTransform(xs);
+		}
+
+		//TODO : works bad
+		public static double[] FastDeconvolution(double[] y, double[] h)
+		{
+			const double alpha = 0.1;
+			var hs = FastFourierTransformCplx(h.Concat(new double[y.Length - h.Length]).ToArray());
+			var ys = FastFourierTransformCplx(y);
+			var hrev = new Complex[hs.Length];
+			var xs = new Complex[ys.Length];
+
+			for (int i = 0; i < hs.Length; i++)
+			{
+				double div = hs[i].Abs * hs[i].Abs + alpha * alpha;
+				hrev[i] = new Complex
+				{
+					Real = hs[i].Real / div,
+					Imag = -hs[i].Imag / div
+				};
+			}
+
+			for (int i = 0; i < xs.Length; i++)
+			{
+				xs[i] = new Complex
+				{
+					Real = ys[i].Real * hrev[i].Real - ys[i].Imag * hrev[i].Imag,
+					Imag = ys[i].Real * hrev[i].Imag + ys[i].Imag * hrev[i].Real
+				};
+			}
+
+			return FastReverseFourierTransform(xs);
 		}
 	}
 }
