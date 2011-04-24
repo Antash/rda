@@ -152,12 +152,11 @@ namespace RDA
 		//сдвиг, возвращает значение функции автокорреляции
 		private static double Ac(double[] fx, int m)
 		{
-			//double s = 0;
-			//double sz = M(fx);
-			//for (int i = 0; i + m < N; i++)
-			//    s += (fx[i] - sz)*(fx[i + m] - sz);
-			//return s/N;
-			return 0;
+			double s = 0;
+			double sz = M(fx);
+			for (int i = 0; i + m < fx.Length; i++)
+				s += (fx[i] - sz) * (fx[i + m] - sz);
+			return s / N;
 		}
 
 		//сдвиг, возвращает значение функции взаимной автокорреляции
@@ -265,106 +264,6 @@ namespace RDA
 
 		public static void ClearTrend(ref double[] f)
 		{
-		}
-
-		public static double Amp(Func f)
-		{
-			return (f.Fx[1].Max() - f.Fx[1].Min());
-		}
-		
-		public struct CplxF
-		{
-			public double X;
-			public Complex Fx;
-
-			public CplxF(double x, Complex fx)
-			{
-				X = x;
-				Fx = fx;
-			}
-		}
-
-		public static Complex[] Fourie(double[] fx)
-		{
-			const int ns = 1000;
-			var res = new Complex[ns];
-			//for (int i = 0; i < ns; i++)
-			//{
-			//    double a;
-			//    double b;
-			//    FourieKoef(fx, i, out a, out b);
-			//    res[i].Fx = new Complex(a, b);
-			//}
-			return res;
-		}
-
-		public static CplxF[] Fourie(double[][] fx)
-		{
-			const int ns = 1000;
-			var res = new CplxF[ns];
-			for (int i = 0; i < ns; i++)
-			{
-				res[i].X = i / 2.0 / Math.PI;
-				double a;
-				double b;
-				FourieKoef(fx, i, out a, out b);
-				res[i].Fx = new Complex(a, b);
-			}
-			return res;
-		}
-
-		public static double[][] SpectralAnalysis(double[][] fx)
-		{
-			var res = new double[2][];
-			const int ns = 1000;
-			res[0] = new double[ns];
-			res[1] = new double[ns];
-			for (int i = 1; i < ns; i++)
-			{
-				res[0][i] = i/2.0/Math.PI;
-				double a;
-				double b;
-				FourieKoef(fx, i, out a, out b);
-				res[1][i] = Math.Sqrt(a*a + b*b);
-			}
-			return res;
-		}
-
-		public static void FourieKoef(double[][] fx, double n, out double a, out double b)
-		{
-			var modafx = new double[2][];
-			modafx[0] = new double[fx[0].Count()];
-			modafx[1] = new double[fx[0].Count()];
-			for (int i = 0; i < fx[0].Count(); i++)
-			{
-				modafx[1][i] = fx[1][i]*Math.Cos(n * fx[0][i] / 1000);
-				modafx[0][i] = fx[0][i];
-			}
-			a = Integral(modafx) / Math.Sqrt(2 * Math.PI);
-			var modbfx = new double[2][];
-			modbfx[0] = new double[fx[0].Count()];
-			modbfx[1] = new double[fx[0].Count()];
-			for (int i = 0; i < fx[0].Count(); i++)
-			{
-				modbfx[1][i] = fx[1][i] * Math.Sin(n * fx[0][i] / 1000);
-				modbfx[0][i] = fx[0][i];
-			}
-			b = Integral(modbfx) / Math.Sqrt( 2 * Math.PI);
-		}
-
-		public static double Integral(double[][] fx)
-		{
-			double res = 0;
-			for (int i = 1; i < fx[0].Count(); i++)
-			{
-				res += (fx[1][i] + fx[1][i - 1])*Math.Abs(fx[0][i] - fx[0][i - 1])/2;
-			}
-			return res;
-		}
-		
-		public static double Sn(Func f, Func noize)
-		{
-			return 20 * Math.Log10(Amp(f)/Amp(noize));
 		}
 	}
 }
