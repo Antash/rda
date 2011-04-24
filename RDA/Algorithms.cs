@@ -3,8 +3,16 @@ using System.Linq;
 
 namespace RDA
 {
+	/// <summary>
+	/// Class contains transformation algorithms
+	/// </summary>
 	class Algorithms
 	{
+		/// <summary>
+		/// Fast reverce Fourier transformation
+		/// </summary>
+		/// <param name="f">Input complex function</param>
+		/// <returns>Complex result</returns>
 		public static Complex[] FastReverseFourierTransformCplx(Complex[] f)
 		{
 			var nn = (int)Math.Pow(2, Math.Floor(Math.Log(f.Length) / Math.Log(2)));
@@ -14,6 +22,11 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Fast reverce Fourier transformation
+		/// </summary>
+		/// <param name="f">Input complex function</param>
+		/// <returns>Real result</returns>
 		public static double[] FastReverseFourierTransform(Complex[] f)
 		{
 			var cplxRes = FastReverseFourierTransformCplx(f);
@@ -26,6 +39,16 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Main algorithm of the fast Fourier transformation
+		/// </summary>
+		/// <param name="f">Input real discrete function</param>
+		/// <param name="nn">
+		/// Number of significant function values.
+		/// Must be the power of 2
+		/// </param>
+		/// <param name="reverce">indicates if transformation is reverce</param>
+		/// <returns>Complex transformation result</returns>
 		private static Complex[] Fft(double[] f, int nn, bool reverce)
 		{
 			var cplxf = new Complex[f.Length];
@@ -36,6 +59,16 @@ namespace RDA
 			return Fft(cplxf, nn, reverce);
 		}
 
+		/// <summary>
+		/// Main algorithm of the fast Fourier transformation
+		/// </summary>
+		/// <param name="f">Input complex discrete function</param>
+		/// <param name="nn">
+		/// Number of significant function values.
+		/// Must be the power of 2
+		/// </param>
+		/// <param name="reverce">indicates if transformation is reverce</param>
+		/// <returns>Complex transformation result</returns>
 		private static Complex[] Fft(Complex[] f, int nn, bool reverce)
 		{
 			var data = new double[2 * nn + 1];
@@ -120,6 +153,11 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Fast Fourier transformation
+		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Complex result</returns>
 		public static Complex[] FastFourierTransformCplx(double[] f)
 		{
 			var nn = (int)Math.Pow(2, Math.Floor(Math.Log(f.Length) / Math.Log(2)));
@@ -127,6 +165,11 @@ namespace RDA
 			return Fft(f, nn, false);
 		}
 
+		/// <summary>
+		/// Fast Fourier transformation real
+		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Real result (half, symmetrical values discarded)</returns>
 		public static double[] FastFourierTransform(double[] f)
 		{
 			var cplxres = FastFourierTransformCplx(f);
@@ -138,6 +181,11 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Traditional Fourier transformation complex
+		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Complex result</returns>
 		public static Complex[] SlowFourierTransformCplx(double[] f)
 		{
 			var res = new Complex[f.Length];
@@ -155,6 +203,11 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Traditional Fourier transformation real
+		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Real result (half, symmetrical values discarded)</returns>
 		public static double[] SlowFourierTransform(double[] f)
 		{
 			var cplxRes = SlowFourierTransformCplx(f);
@@ -166,6 +219,11 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Traditional reverce Fourier transformation
+		/// </summary>
+		/// <param name="f">Input complex function</param>
+		/// <returns>Complex result</returns>
 		public static Complex[] SlowReverseFourierTransformCplx(Complex[] f)
 		{
 			var res = new Complex[f.Length];
@@ -176,16 +234,19 @@ namespace RDA
 				res[i] = new Complex();
 				for (int j = 0; j < f.Length; j++)
 				{
-					res[i].Real += f[j].Real * Math.Cos(arg * i * j) - f[j].Imag * Math.Sin(arg * i * j);
-					res[i].Imag += f[j].Imag * Math.Cos(arg * i * j) + f[j].Real * Math.Sin(arg * i * j);
+					res[i] += f[j] * new Complex(Math.Cos(arg * i * j), Math.Sin(arg * i * j));
 				}
-				res[i].Real /= f.Length;
-				res[i].Imag /= f.Length;
+				res[i] /= f.Length;
 			}
 
 			return res;
 		}
 
+		/// <summary>
+		/// Traditional reverce Fourier transformation
+		/// </summary>
+		/// <param name="f">Input complex function</param>
+		/// <returns>Real result</returns>
 		public static double[] SlowReverseFourierTransform(Complex[] f)
 		{
 			var cplxRes = SlowReverseFourierTransformCplx(f);
@@ -197,6 +258,18 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Convolution algorythm
+		/// </summary>
+		/// <param name="x">Main function</param>
+		/// <param name="h">Second function</param>
+		/// <returns>Result function</returns>
+		/// <remarks>
+		/// Result function actual length is x.Length + h.Length
+		/// This convolution algorythm trims resulf for h.Length/2 values, so
+		/// returned result have the same length as function x.
+		/// Warning! [x] Length must be greater than [h]'s!
+		/// </remarks>
 		public static double[] Convolution(double[] x, double[] h)
 		{
 			var tmpres = new double[x.Length + h.Length];
@@ -218,7 +291,18 @@ namespace RDA
 			return res;
 		}
 
-		public static double[] SlowDeconvolution(double[] y, double[] h)
+		/// <summary>
+		/// Deconvolution algorythm
+		/// Restores source signal from input signal [y]
+		/// with help of affecting function [h]
+		/// </summary>
+		/// <param name="y">Input signal</param>
+		/// <param name="h">Affecting function</param>
+		/// <returns>Source function</returns>
+		/// <remarks>
+		/// This algorithm uses slow fourier transformations!
+		/// </remarks>
+		public static double[] Deconvolution(double[] y, double[] h)
 		{
 			const double alpha = 0.1;
 			var hs = SlowFourierTransformCplx(h.Concat(new double[y.Length - h.Length]).ToArray());
@@ -228,55 +312,16 @@ namespace RDA
 
 			for (int i = 0; i < hs.Length; i++)
 			{
-				double div = hs[i].Abs * hs[i].Abs + alpha * alpha;
-				hrev[i] = new Complex
-						{
-							Real = hs[i].Real / div,
-							Imag = -hs[i].Imag / div
-						};
+				hrev[i] = hs[i].GetConjugate() /
+					(hs[i].Abs * hs[i].Abs + alpha * alpha);
 			}
 
 			for (int i = 0; i < xs.Length; i++)
 			{
-				xs[i] = new Complex
-						{
-							Real = ys[i].Real * hrev[i].Real - ys[i].Imag * hrev[i].Imag,
-							Imag = ys[i].Real * hrev[i].Imag + ys[i].Imag * hrev[i].Real
-						};
+				xs[i] = ys[i] * hrev[i];
 			}
 
 			return SlowReverseFourierTransform(xs);
-		}
-
-		//TODO : works bad
-		public static double[] FastDeconvolution(double[] y, double[] h)
-		{
-			const double alpha = 0.1;
-			var hs = FastFourierTransformCplx(h.Concat(new double[y.Length - h.Length]).ToArray());
-			var ys = FastFourierTransformCplx(y);
-			var hrev = new Complex[hs.Length];
-			var xs = new Complex[ys.Length];
-
-			for (int i = 0; i < hs.Length; i++)
-			{
-				double div = hs[i].Abs * hs[i].Abs + alpha * alpha;
-				hrev[i] = new Complex
-				{
-					Real = hs[i].Real / div,
-					Imag = -hs[i].Imag / div
-				};
-			}
-
-			for (int i = 0; i < xs.Length; i++)
-			{
-				xs[i] = new Complex
-				{
-					Real = ys[i].Real * hrev[i].Real - ys[i].Imag * hrev[i].Imag,
-					Imag = ys[i].Real * hrev[i].Imag + ys[i].Imag * hrev[i].Real
-				};
-			}
-
-			return FastReverseFourierTransform(xs);
 		}
 	}
 }
