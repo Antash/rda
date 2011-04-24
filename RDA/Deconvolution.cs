@@ -12,7 +12,7 @@ namespace RDA
 			var h = conv.Fh();
 			var y = conv.Result();
 
-			return Algorithms.Deconvolution(y, h);
+			return Algorithms.SlowDeconvolution(y, h);
 		}
 	}
 }
