@@ -34,9 +34,11 @@ namespace RDA
 			ucFuncAnalysis6.DispFunc = noize2F;
 			var cardiogram = new Convolution ();
 			var cardio = new Func (cardiogram.Result ());
+			//cardio.AddF(noize1F);
 			ucFuncAnalysis7.DispFunc = cardio;
 			var deconvolution = new Deconvolution ();
-			var deconv = new Func (deconvolution.Result (cardiogram.Result (), cardiogram));
+			
+			var deconv = new Func(deconvolution.Result(cardio.Fx[1], cardiogram));
 			ucFuncAnalysis8.DispFunc = deconv;
 			var fil = new Filter ();
 			//var filter = new Func (fil.Result (1, 1000, 0.06));
