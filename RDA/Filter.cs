@@ -39,6 +39,11 @@ namespace RDA
 			return w;
 		}
 
+		public double[] Resultinv (int b, int m, double dt)
+		{
+			double[] w = HalfFilter (b, m / 2, dt).Concat (HalfFilter (b, m / 2, dt).Reverse ()).ToArray ();
+			return w;
+		}
 		public double[] FilterSignal(double[] doubles, double[] filter)
 		{
 			return Algorithms.Convolution(doubles, filter);

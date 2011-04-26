@@ -245,6 +245,27 @@ namespace RDA
 		/// <summary>
 		/// Traditional reverce Fourier transformation
 		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Complex result</returns>
+		public static Complex[] SlowReverseFourierTransformCplx (double[] f)
+		{
+			var res = new Complex[f.Length];
+			double arg = 2 * Math.PI / f.Length;
+			
+			for (int i = 0; i < f.Length; i++) {
+				res[i] = new Complex ();
+				for (int j = 0; j < f.Length; j++) {
+					res[i] += f[j] * new Complex (Math.Cos (arg * i * j), Math.Sin (arg * i * j));
+				}
+				res[i] /= f.Length;
+			}
+			
+			return res;
+		}
+		
+		/// <summary>
+		/// Traditional reverce Fourier transformation
+		/// </summary>
 		/// <param name="f">Input complex function</param>
 		/// <returns>Real result</returns>
 		public static double[] SlowReverseFourierTransform(Complex[] f)
@@ -258,6 +279,22 @@ namespace RDA
 			return res;
 		}
 
+		/// <summary>
+		/// Traditional reverce Fourier transformation
+		/// </summary>
+		/// <param name="f">Input real function</param>
+		/// <returns>Real result</returns>
+		public static double[] SlowReverseFourierTransform (double[] f)
+		{
+			var cplxRes = SlowReverseFourierTransformCplx (f);
+			var res = new double[cplxRes.Length];
+			
+			for (int i = 0; i < res.Length; i++)
+				res[i] = cplxRes[i].Real + cplxRes[i].Imag;
+			
+			return res;
+		}
+		
 		/// <summary>
 		/// Convolution algorythm
 		/// </summary>
