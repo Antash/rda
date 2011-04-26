@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="FuncHelper.cs" />
     <Compile Include="Func.cs" />
+    <Compile Include="Functions.cs" />
     <Compile Include="GBuilder.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>

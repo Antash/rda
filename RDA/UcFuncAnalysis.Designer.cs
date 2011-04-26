@@ -232,6 +232,7 @@
 			this.bRAC.Size = new System.Drawing.Size(145, 63);
 			this.bRAC.TabIndex = 2;
 			this.bRAC.Text = "Функция взаимной корреляции";
+			this.bRAC.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.bRAC.UseVisualStyleBackColor = true;
 			this.bRAC.Click += new System.EventHandler(this.bRAC_Click);
 			// 

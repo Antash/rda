@@ -34,7 +34,18 @@ namespace RDA
 				res[0][i] = i;
 			return res;
 		}
-		
+
+		static double[] FxNoize()
+		{
+			var res = Fx();
+			var noize = FuncHelper.Noise1();
+
+			for (int i = 0; i < res.Length; i++)
+				res[i] += noize[i];
+
+			return res;
+		}
+
 		static double[] Fx()
 		{
 			var res = new double[Nx];
@@ -64,7 +75,9 @@ namespace RDA
 		
 		public double[] Result()
 		{
-			return Algorithms.Convolution(Fx(), Fh());
+			return Algorithms.Convolution(
+				Functions.Fspectrum(Nx, R, Tp, PsistAvg, PdiastAvg, 0.1), 
+				Functions.Fh(Np));
 		}
 	}
 }
