@@ -53,7 +53,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(465, 326);
 			this.Controls.Add(this.zgc);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
 			this.Name = "FrmFuncViewer";
 			this.Text = "FrmFuncViewer";
 			this.ResumeLayout(false);

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Linq;
 
 namespace RDA
 {
@@ -20,7 +21,7 @@ namespace RDA
 			//    new[] { 75.0, 15, 25 },
 			//    0.001)[1])));
 
-			var polyharmFun = new Func(FuncHelper.Polyharm(
+			var polyharmFun = new Func (FuncHelper.Polyharm (
 				new[] { 50, 5, 150.0 },
 				new[] { 75.0, 15, 25 },
 				0.001));
@@ -37,14 +38,19 @@ namespace RDA
 			var deconvolution = new Deconvolution ();
 			var deconv = new Func (deconvolution.Result (cardiogram.Result (), cardiogram));
 			ucFuncAnalysis8.DispFunc = deconv;
-			var fil = new Filter();
-			var filter = new Func(fil.Result(1, 1000, 0.01));
-			ucFuncAnalysis9.DispFunc = filter;
-			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
-				new[] { 50, 5, 150.0 },
-				new[] { 75.0, 15, 25 },
-				0.001)[1], fil.Result(1, 100, 0.1)));
-			ucFuncAnalysis10.DispFunc = filtered;
+			var fil = new Filter ();
+			//var filter = new Func (fil.Result (1, 1000, 0.06));
+			
+			var filter = fil.Result (1, 1000, 0.06);
+			var fspectr = new Function (Algorithms.SlowFourierTransform (filter));
+			var fhf = fspectr.F.Max () - fspectr;
+			var fff = new Func(Algorithms.SlowReverseFourierTransform(fhf));
+			ucFuncAnalysis9.DispFunc = fff;//filter;
+//			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
+//				new[] { 50, 5, 150.0 },
+//				new[] { 75.0, 15, 25 },
+//				0.001)[1], filter.Fx[1]));
+//			ucFuncAnalysis10.DispFunc = filtered;
 		}
 	}
 }
