@@ -329,6 +329,43 @@ namespace RDA
 		}
 
 		/// <summary>
+		/// 2D Convolution algorythm
+		/// </summary>
+		/// <param name="x">Main function</param>
+		/// <param name="h">Second function</param>
+		/// <returns>Result function</returns>
+		public static double[,] Convolution(double[,] x, double[,] h)
+		{
+			int tmpresw = x.GetLength(0) + h.GetLength(0),
+				tmpresh = x.GetLength(1) + h.GetLength(1);
+			var tmpres = new double[tmpresw, tmpresh];
+			
+			for (int x0 = 0; x0 < tmpresw; x0++)
+				for (int y0 = 0; y0 < tmpresh; y0++)
+				{
+					double t = 0;
+					for (int i = 0; i < tmpresw; i++)
+					{
+						for (int j = 0; j < tmpresh; j++)
+							if (i < x.GetLength(0) &&
+							    j < x.GetLength(1) &&
+							    x0 - i < h.GetLength(0) &&
+							    y0 - j < h.GetLength(1))
+								t += x[i, j]*h[x0 - i, y0 - j];
+					}
+					tmpres[x0, y0] = t;
+				}
+
+			var res = new double[x.GetLength(0), x.GetLength(1)];
+
+			for (int i = 0, ii = h.GetLength(0) / 2; i < res.GetLength(0); i++, ii++)
+				for (int j = 0, jj = h.GetLength(1) / 2; j < res.GetLength(1); j++, jj++)
+					res[i, j] = tmpres[ii, jj];
+
+			return res;
+		}
+
+		/// <summary>
 		/// Deconvolution algorythm
 		/// Restores source signal from input signal [y]
 		/// with help of affecting function [h]

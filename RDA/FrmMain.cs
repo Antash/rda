@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using System.Linq;
 
 namespace RDA
@@ -43,10 +44,10 @@ namespace RDA
 			var fil = new Filter ();
 			//var filter = new Func (fil.Result (1, 1000, 0.06));
 			
-			var filter = fil.Result (1, 1000, 0.06);
+			var filter = fil.Result (1, 1000, 0.01);
 			var fspectr = new Function (Algorithms.SlowFourierTransform (filter));
-			var fhf = fspectr.F.Max () - fspectr;
-			var fff = new Func(Algorithms.SlowReverseFourierTransform(fhf));
+			var fhf = fspectr.F.Reverse().ToArray();
+			var fff = new Func(fhf);//Algorithms.SlowReverseFourierTransform(fhf));
 			ucFuncAnalysis9.DispFunc = fff;//filter;
 //			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
 //				new[] { 50, 5, 150.0 },

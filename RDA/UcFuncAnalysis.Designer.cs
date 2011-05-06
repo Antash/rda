@@ -46,12 +46,14 @@
 			this.bP = new System.Windows.Forms.Button();
 			this.zgc = new ZedGraph.ZedGraphControl();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.rft = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.rft);
 			this.panel1.Controls.Add(this.bfft);
 			this.panel1.Controls.Add(this.bDown);
 			this.panel1.Controls.Add(this.bUp);
@@ -72,20 +74,20 @@
 			// 
 			// bfft
 			// 
-			this.bfft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bfft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bfft.Location = new System.Drawing.Point(3, 362);
 			this.bfft.Name = "bfft";
-			this.bfft.Size = new System.Drawing.Size(145, 43);
+			this.bfft.Size = new System.Drawing.Size(63, 43);
 			this.bfft.TabIndex = 12;
-			this.bfft.Text = "Спектральный анализ";
+			this.bfft.Text = "FT";
 			this.bfft.UseVisualStyleBackColor = true;
 			this.bfft.Click += new System.EventHandler(this.bfft_Click);
 			// 
 			// bDown
 			// 
-			this.bDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bDown.Location = new System.Drawing.Point(3, 294);
 			this.bDown.Name = "bDown";
 			this.bDown.Size = new System.Drawing.Size(145, 26);
@@ -96,8 +98,8 @@
 			// 
 			// bUp
 			// 
-			this.bUp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bUp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bUp.Location = new System.Drawing.Point(3, 262);
 			this.bUp.Name = "bUp";
 			this.bUp.Size = new System.Drawing.Size(145, 26);
@@ -108,8 +110,8 @@
 			// 
 			// bPolyharm
 			// 
-			this.bPolyharm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bPolyharm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bPolyharm.Location = new System.Drawing.Point(3, 208);
 			this.bPolyharm.Name = "bPolyharm";
 			this.bPolyharm.Size = new System.Drawing.Size(145, 48);
@@ -121,8 +123,8 @@
 			// 
 			// bHarm
 			// 
-			this.bHarm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bHarm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bHarm.Location = new System.Drawing.Point(3, 176);
 			this.bHarm.Name = "bHarm";
 			this.bHarm.Size = new System.Drawing.Size(145, 26);
@@ -134,8 +136,8 @@
 			// 
 			// bTrend
 			// 
-			this.bTrend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bTrend.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bTrend.Location = new System.Drawing.Point(3, 144);
 			this.bTrend.Name = "bTrend";
 			this.bTrend.Size = new System.Drawing.Size(145, 26);
@@ -147,8 +149,8 @@
 			// 
 			// bJump
 			// 
-			this.bJump.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bJump.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bJump.Location = new System.Drawing.Point(3, 112);
 			this.bJump.Name = "bJump";
 			this.bJump.Size = new System.Drawing.Size(145, 26);
@@ -160,8 +162,8 @@
 			// 
 			// bNoise
 			// 
-			this.bNoise.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bNoise.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bNoise.Location = new System.Drawing.Point(3, 80);
 			this.bNoise.Name = "bNoise";
 			this.bNoise.Size = new System.Drawing.Size(145, 26);
@@ -213,8 +215,8 @@
 			// 
 			// bAC
 			// 
-			this.bAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bAC.Location = new System.Drawing.Point(3, 480);
 			this.bAC.Name = "bAC";
 			this.bAC.Size = new System.Drawing.Size(145, 44);
@@ -225,8 +227,8 @@
 			// 
 			// bRAC
 			// 
-			this.bRAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bRAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bRAC.Location = new System.Drawing.Point(3, 411);
 			this.bRAC.Name = "bRAC";
 			this.bRAC.Size = new System.Drawing.Size(145, 63);
@@ -238,8 +240,8 @@
 			// 
 			// bP
 			// 
-			this.bP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
+			this.bP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.bP.Location = new System.Drawing.Point(3, 530);
 			this.bP.Name = "bP";
 			this.bP.Size = new System.Drawing.Size(145, 44);
@@ -280,6 +282,18 @@
 			this.comboBox1.Text = "Выберите коррелирующую функцию";
 			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
+			// rft
+			// 
+			this.rft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.rft.Location = new System.Drawing.Point(85, 362);
+			this.rft.Name = "rft";
+			this.rft.Size = new System.Drawing.Size(63, 43);
+			this.rft.TabIndex = 13;
+			this.rft.Text = "RFT";
+			this.rft.UseVisualStyleBackColor = true;
+			this.rft.Click += new System.EventHandler(this.rft_Click);
+			// 
 			// UcFuncAnalysis
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -316,5 +330,6 @@
 		private System.Windows.Forms.Button bDown;
 		private System.Windows.Forms.Button bfft;
 		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Button rft;
 	}
 }
