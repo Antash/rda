@@ -188,5 +188,10 @@ namespace RDA
 					break;
 			}
 		}
+
+		private void rft_Click(object sender, EventArgs e)
+		{
+			new FrmFuncViewer(GBuilder.MakeGraph(new Func(Algorithms.SlowReverseFourierTransform(dispFunc.Fx[1])).Fx)).Show();
+		}
 	}
 }

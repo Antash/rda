@@ -51,6 +51,8 @@
 			this.ucFuncAnalysis9 = new RDA.UcFuncAnalysis();
 			this.tabPage11 = new System.Windows.Forms.TabPage();
 			this.ucFuncAnalysis10 = new RDA.UcFuncAnalysis();
+			this.tabPage12 = new System.Windows.Forms.TabPage();
+			this.picture1 = new RDA.Picture();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
@@ -63,6 +65,7 @@
 			this.tabPage9.SuspendLayout();
 			this.tabPage10.SuspendLayout();
 			this.tabPage11.SuspendLayout();
+			this.tabPage12.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -78,6 +81,7 @@
 			this.tabControl1.Controls.Add(this.tabPage9);
 			this.tabControl1.Controls.Add(this.tabPage10);
 			this.tabControl1.Controls.Add(this.tabPage11);
+			this.tabControl1.Controls.Add(this.tabPage12);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -298,6 +302,25 @@
 			this.ucFuncAnalysis10.Size = new System.Drawing.Size(922, 634);
 			this.ucFuncAnalysis10.TabIndex = 7;
 			// 
+			// tabPage12
+			// 
+			this.tabPage12.Controls.Add(this.picture1);
+			this.tabPage12.Location = new System.Drawing.Point(4, 25);
+			this.tabPage12.Name = "tabPage12";
+			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage12.Size = new System.Drawing.Size(928, 640);
+			this.tabPage12.TabIndex = 11;
+			this.tabPage12.Text = "Картинка";
+			this.tabPage12.UseVisualStyleBackColor = true;
+			// 
+			// picture1
+			// 
+			this.picture1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.picture1.Location = new System.Drawing.Point(3, 3);
+			this.picture1.Name = "picture1";
+			this.picture1.Size = new System.Drawing.Size(922, 634);
+			this.picture1.TabIndex = 0;
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -320,6 +343,7 @@
 			this.tabPage9.ResumeLayout(false);
 			this.tabPage10.ResumeLayout(false);
 			this.tabPage11.ResumeLayout(false);
+			this.tabPage12.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -349,6 +373,8 @@
 		private UcFuncAnalysis ucFuncAnalysis9;
 		private System.Windows.Forms.TabPage tabPage11;
 		private UcFuncAnalysis ucFuncAnalysis10;
+		private System.Windows.Forms.TabPage tabPage12;
+		private Picture picture1;
     }
 }
 
