@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RDA
 {
 	class Filter
 	{
-		public double[] HalfFilter(int b, int m, double dt)
+		public static double[] LpPotter(int b, int m, double dt)
 		{
 			var w = new double[m + 1];
 			var d = new[] { 0.35577019, 0.2436983, 0.07211497, 0.00630165 };
@@ -33,18 +31,59 @@ namespace RDA
 			return w;
 		}
 
-		public double[] Result(int b, int m, double dt)
+		public static double[] Result(int b, int m, double dt)
 		{
-			double[] w = HalfFilter(b, m / 2, dt).Reverse().Concat(HalfFilter(b, m / 2, dt)).ToArray();
-			return w;
+			var hf = LpPotter(b, m / 2, dt);
+			return hf.Reverse().Take(m / 2).Concat(hf).ToArray();
 		}
 
-		public double[] Resultinv (int b, int m, double dt)
+		public static double[] ResultHP(int b, int m, double dt)
 		{
-			double[] w = HalfFilter (b, m / 2, dt).Concat (HalfFilter (b, m / 2, dt).Reverse ()).ToArray ();
-			return w;
+			var w = Result(b, m, dt);
+			var res = new double[w.Length];
+			for (int i = 0; i < w.Length; i++)
+			{
+				if (i != (w.Length / 2))
+					res[i] = -w[i];
+				else
+					res[i] = 1 - w[i];
+			}
+			return res;
 		}
-		public double[] FilterSignal(double[] doubles, double[] filter)
+
+		public static double[] ResultSlice(int b1, int b2, int m, double dt)
+		{
+			double[] w1 = Result(b1, m, dt);
+			var w2 = Result(b2, m, dt);
+			var res = new double[w1.Length];
+			for (int i = 0; i < w1.Length; i++)
+			{
+				res[i] = b2 > b1 ? w2[i] - w1[i] : w1[i] - w2[i];
+			}
+			return res;
+		}
+
+		public static double[] ResultBsw(int b1, int b2, int m, double dt)
+		{
+			if (b2 > b1)
+			{
+				var w1 = Result(b1, m, dt);
+				var w2 = Result(b2, m, dt);
+				var res = new double[w1.Length];
+				for (int i = 0; i < w1.Length; i++)
+				{
+					if (i == (w1.Length - 1) / 2)
+						res[i] = 1 + w1[i] - w2[i];
+					else
+						res[i] = w1[i] - w2[i];
+
+				}
+				return res;
+			}
+			throw new ArgumentException("use b2 > b1");
+		}
+
+		public static double[] FilterSignal(double[] doubles, double[] filter)
 		{
 			return Algorithms.Convolution(doubles, filter);
 		}
