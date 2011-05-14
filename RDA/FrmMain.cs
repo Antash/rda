@@ -41,19 +41,22 @@ namespace RDA
 			
 			var deconv = new Func(deconvolution.Result(cardio.Fx[1], cardiogram));
 			ucFuncAnalysis8.DispFunc = deconv;
-			var fil = new Filter ();
-			//var filter = new Func (fil.Result (1, 1000, 0.06));
+			//var filter = new Func(Filter.Result(60, 100, 0.001));
+			var filter = new Func(Filter.ResultHP(60, 100, 0.001));
+			//var filter = new Func(Filter.ResultBsw(40, 60, 100, 0.001));
+			//var filter = new Func(Filter.ResultSlice(40, 60, 100, 0.001));
 			
-			var filter = fil.Result (1, 1000, 0.01);
-			var fspectr = new Function (Algorithms.SlowFourierTransform (filter));
-			var fhf = fspectr.F.Reverse().ToArray();
-			var fff = new Func(fhf);//Algorithms.SlowReverseFourierTransform(fhf));
-			ucFuncAnalysis9.DispFunc = fff;//filter;
-//			var filtered = new Func(fil.FilterSignal(FuncHelper.Polyharm (
-//				new[] { 50, 5, 150.0 },
-//				new[] { 75.0, 15, 25 },
-//				0.001)[1], filter.Fx[1]));
-//			ucFuncAnalysis10.DispFunc = filtered;
+			//var filter = fil.Result (1, 32, 0.1);
+			//var fspectr = new Function (Algorithms.SlowFourierTransform (filter));
+			//var fhf = fspectr.F.Reverse().ToArray();
+			//var fff = new Func(fhf);//Algorithms.SlowReverseFourierTransform(fhf));
+			//ucFuncAnalysis9.DispFunc = new Func(Algorithms.SlowFourierTransform(filter.Fx[1]));
+			ucFuncAnalysis9.DispFunc = filter;
+			var filtered = new Func(Filter.FilterSignal(FuncHelper.Polyharm(
+				new[] { 50, 5, 150.0 },
+				new[] { 75.0, 15, 25 },
+				0.001)[1], filter.Fx[1]));
+			ucFuncAnalysis10.DispFunc = filtered;
 		}
 	}
 }
