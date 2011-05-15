@@ -52,11 +52,7 @@ namespace RDA
 			//var fff = new Func(fhf);//Algorithms.SlowReverseFourierTransform(fhf));
 			//ucFuncAnalysis9.DispFunc = new Func(Algorithms.SlowFourierTransform(filter.Fx[1]));
 			//ucFuncAnalysis9.DispFunc = filter;
-			//var filtered = new Func(Filter.FilterSignal(FuncHelper.Polyharm(
-			//    new[] { 50, 5, 150.0 },
-			//    new[] { 75.0, 15, 25 },
-			//    0.001)[1], filter.Fx[1]));
-			//ucFuncAnalysis10.DispFunc = filtered;
+			ucFiltration1.DispFunc = polyharmFun;
 		}
 	}
 }
