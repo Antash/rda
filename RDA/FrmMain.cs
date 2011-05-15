@@ -38,20 +38,8 @@ namespace RDA
 			//cardio.AddF(noize1F);
 			ucFuncAnalysis7.DispFunc = cardio;
 			var deconvolution = new Deconvolution ();
-			
 			var deconv = new Func(deconvolution.Result(cardio.Fx[1], cardiogram));
 			ucFuncAnalysis8.DispFunc = deconv;
-			//var filter = new Func(Filter.Result(60, 100, 0.001));
-			var filter = new Func(Filter.ResultHP(60, 100, 0.001));
-			//var filter = new Func(Filter.ResultBsw(40, 60, 100, 0.001));
-			//var filter = new Func(Filter.ResultSlice(40, 60, 100, 0.001));
-			
-			//var filter = fil.Result (1, 32, 0.1);
-			//var fspectr = new Function (Algorithms.SlowFourierTransform (filter));
-			//var fhf = fspectr.F.Reverse().ToArray();
-			//var fff = new Func(fhf);//Algorithms.SlowReverseFourierTransform(fhf));
-			//ucFuncAnalysis9.DispFunc = new Func(Algorithms.SlowFourierTransform(filter.Fx[1]));
-			//ucFuncAnalysis9.DispFunc = filter;
 			ucFiltration1.DispFunc = polyharmFun;
 		}
 	}
