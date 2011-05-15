@@ -32,9 +32,12 @@
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.zgcfiltered = new ZedGraph.ZedGraphControl();
 			this.zgc = new ZedGraph.ZedGraphControl();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.ucFilter1 = new RDA.UcFilter();
+			this.button1 = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -42,8 +45,8 @@
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Controls.Add(this.ucFilter1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -99,13 +102,34 @@
 			this.zgc.Size = new System.Drawing.Size(357, 263);
 			this.zgc.TabIndex = 3;
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.button1);
+			this.panel1.Controls.Add(this.ucFilter1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(406, 547);
+			this.panel1.TabIndex = 2;
+			// 
 			// ucFilter1
 			// 
 			this.ucFilter1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.ucFilter1.Location = new System.Drawing.Point(3, 3);
+			this.ucFilter1.Location = new System.Drawing.Point(0, 0);
 			this.ucFilter1.Name = "ucFilter1";
 			this.ucFilter1.Size = new System.Drawing.Size(406, 312);
-			this.ucFilter1.TabIndex = 0;
+			this.ucFilter1.TabIndex = 1;
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button1.Location = new System.Drawing.Point(261, 318);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(142, 30);
+			this.button1.TabIndex = 3;
+			this.button1.Text = "fourie";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// UcFiltration
 			// 
@@ -116,6 +140,7 @@
 			this.Size = new System.Drawing.Size(785, 553);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -123,9 +148,11 @@
 		#endregion
 
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private UcFilter ucFilter1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private ZedGraph.ZedGraphControl zgcfiltered;
 		private ZedGraph.ZedGraphControl zgc;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button button1;
+		private UcFilter ucFilter1;
 	}
 }

@@ -9,7 +9,15 @@ namespace RDA
 		public FrmFuncViewer(IPointList pl)
 		{
 			InitializeComponent();
-			zgc.GraphPane.AddCurve("tmp", pl, Color.Black, SymbolType.None);
+			zgc.GraphPane.AddCurve("base", pl, Color.Black, SymbolType.None);
+			zgc.AxisChange();
+		}
+
+		public FrmFuncViewer(IPointList pl1, IPointList pl2)
+		{
+			InitializeComponent();
+			zgc.GraphPane.AddCurve("filtered", pl2, Color.Red, SymbolType.None);
+			zgc.GraphPane.AddCurve("base", pl1, Color.Black, SymbolType.None);
 			zgc.AxisChange();
 		}
 	}

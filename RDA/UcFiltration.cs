@@ -14,6 +14,7 @@ namespace RDA
 	{
 		private Func dispFunc;
 		private Func filter;
+		private Func filtered;
 
 		public UcFiltration()
 		{
@@ -46,10 +47,16 @@ namespace RDA
 			if (filter == null)
 				return;
 			zgcfiltered.GraphPane.CurveList.Clear();
-			var f = new Func(Filter.FilterSignal(dispFunc.Fx[1], filter.Fx[1]));
-			zgcfiltered.GraphPane.AddCurve(dispFunc.Name, f.FpList, Color.Black, SymbolType.None);
+			filtered = new Func(Filter.FilterSignal(dispFunc.Fx[1], filter.Fx[1]));
+			zgcfiltered.GraphPane.AddCurve(dispFunc.Name, filtered.FpList, Color.Black, SymbolType.None);
 			zgcfiltered.AxisChange();
 			zgcfiltered.Refresh();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			new FrmFuncViewer(GBuilder.MakeGraph(new Func(Algorithms.SlowFourierTransform(dispFunc.Fx[1])).Fx),
+				GBuilder.MakeGraph(new Func(Algorithms.SlowFourierTransform(filtered.Fx[1])).Fx)).Show();
 		}
 	}
 }
