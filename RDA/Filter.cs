@@ -5,7 +5,7 @@ namespace RDA
 {
 	class Filter
 	{
-		public static double[] LpPotter(int b, int m, double dt)
+		public static double[] LpPotter(double b, int m, double dt)
 		{
 			var w = new double[m + 1];
 			var d = new[] { 0.35577019, 0.2436983, 0.07211497, 0.00630165 };
@@ -31,13 +31,13 @@ namespace RDA
 			return w;
 		}
 
-		public static double[] Result(int b, int m, double dt)
+		public static double[] Result(double b, int m, double dt)
 		{
 			var hf = LpPotter(b, m / 2, dt);
 			return hf.Reverse().Take(m / 2).Concat(hf).ToArray();
 		}
 
-		public static double[] ResultHP(int b, int m, double dt)
+		public static double[] ResultHP(double b, int m, double dt)
 		{
 			var w = Result(b, m, dt);
 			var res = new double[w.Length];
@@ -51,7 +51,7 @@ namespace RDA
 			return res;
 		}
 
-		public static double[] ResultSlice(int b1, int b2, int m, double dt)
+		public static double[] ResultSlice(double b1, double b2, int m, double dt)
 		{
 			double[] w1 = Result(b1, m, dt);
 			var w2 = Result(b2, m, dt);
@@ -63,7 +63,7 @@ namespace RDA
 			return res;
 		}
 
-		public static double[] ResultBsw(int b1, int b2, int m, double dt)
+		public static double[] ResultBsw(double b1, double b2, int m, double dt)
 		{
 			if (b2 > b1)
 			{

@@ -51,21 +51,25 @@ namespace RDA
 			switch (ftype.SelectedIndex)
 			{
 				case 0:
-					return Filter.Result(Convert.ToInt32(f1editor.ParamValue),
+					return Filter.Result(
+						Convert.ToDouble(f1editor.ParamValue),
 						Convert.ToInt32(mEditor.ParamValue),
 						Convert.ToDouble(dtEditor.ParamValue));
 				case 1:
-					return Filter.ResultHP(Convert.ToInt32(f1editor.ParamValue),
+					return Filter.ResultHP(
+						Convert.ToDouble(f1editor.ParamValue),
 						Convert.ToInt32(mEditor.ParamValue),
 						Convert.ToDouble(dtEditor.ParamValue));
 				case 2:
-					return Filter.ResultSlice(Convert.ToInt32(f1editor.ParamValue),
-						Convert.ToInt32(f2editor.ParamValue),
+					return Filter.ResultSlice(
+						Convert.ToDouble(f1editor.ParamValue),
+						Convert.ToDouble(f2editor.ParamValue),
 						Convert.ToInt32(mEditor.ParamValue),
 						Convert.ToDouble(dtEditor.ParamValue));
 				case 3:
-					return Filter.ResultBsw(Convert.ToInt32(f1editor.ParamValue),
-						Convert.ToInt32(f2editor.ParamValue),
+					return Filter.ResultBsw(
+						Convert.ToDouble(f1editor.ParamValue),
+						Convert.ToDouble(f2editor.ParamValue),
 						Convert.ToInt32(mEditor.ParamValue),
 						Convert.ToDouble(dtEditor.ParamValue));
 				default:
