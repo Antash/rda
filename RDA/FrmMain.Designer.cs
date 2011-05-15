@@ -29,32 +29,30 @@
         private void InitializeComponent ()
         {
 			this.tabPage12 = new System.Windows.Forms.TabPage();
-			this.picture1 = new RDA.UcPicture();
 			this.tabPage10 = new System.Windows.Forms.TabPage();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.ucFilter1 = new RDA.UcFilter();
 			this.tabPage9 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis8 = new RDA.UcFuncAnalysis();
 			this.tabPage8 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis7 = new RDA.UcFuncAnalysis();
 			this.tabPage7 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis6 = new RDA.UcFuncAnalysis();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis5 = new RDA.UcFuncAnalysis();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis4 = new RDA.UcFuncAnalysis();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis3 = new RDA.UcFuncAnalysis();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis2 = new RDA.UcFuncAnalysis();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.ucFuncAnalysis1 = new RDA.UcFuncAnalysis();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.funcAnalysis1 = new RDA.UcFuncAnalysis();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.funcAnalysis1 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis1 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis2 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis3 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis4 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis5 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis6 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis7 = new RDA.UcFuncAnalysis();
+			this.ucFuncAnalysis8 = new RDA.UcFuncAnalysis();
+			this.picture1 = new RDA.UcPicture();
+			this.ucFiltration1 = new RDA.UcFiltration();
 			this.tabPage12.SuspendLayout();
 			this.tabPage10.SuspendLayout();
-			this.tableLayoutPanel1.SuspendLayout();
 			this.tabPage9.SuspendLayout();
 			this.tabPage8.SuspendLayout();
 			this.tabPage7.SuspendLayout();
@@ -78,17 +76,9 @@
 			this.tabPage12.Text = "Картинка";
 			this.tabPage12.UseVisualStyleBackColor = true;
 			// 
-			// picture1
-			// 
-			this.picture1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.picture1.Location = new System.Drawing.Point(3, 3);
-			this.picture1.Name = "picture1";
-			this.picture1.Size = new System.Drawing.Size(922, 634);
-			this.picture1.TabIndex = 0;
-			// 
 			// tabPage10
 			// 
-			this.tabPage10.Controls.Add(this.tableLayoutPanel1);
+			this.tabPage10.Controls.Add(this.ucFiltration1);
 			this.tabPage10.Location = new System.Drawing.Point(4, 25);
 			this.tabPage10.Name = "tabPage10";
 			this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -96,28 +86,6 @@
 			this.tabPage10.TabIndex = 9;
 			this.tabPage10.Text = "Фильтр";
 			this.tabPage10.UseVisualStyleBackColor = true;
-			// 
-			// tableLayoutPanel1
-			// 
-			this.tableLayoutPanel1.ColumnCount = 2;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.18004F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.81996F));
-			this.tableLayoutPanel1.Controls.Add(this.ucFilter1, 0, 0);
-			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 1;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(922, 634);
-			this.tableLayoutPanel1.TabIndex = 1;
-			// 
-			// ucFilter1
-			// 
-			this.ucFilter1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.ucFilter1.Location = new System.Drawing.Point(3, 3);
-			this.ucFilter1.Name = "ucFilter1";
-			this.ucFilter1.Size = new System.Drawing.Size(428, 334);
-			this.ucFilter1.TabIndex = 0;
 			// 
 			// tabPage9
 			// 
@@ -130,14 +98,6 @@
 			this.tabPage9.Text = "Деконволюця";
 			this.tabPage9.UseVisualStyleBackColor = true;
 			// 
-			// ucFuncAnalysis8
-			// 
-			this.ucFuncAnalysis8.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis8.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis8.Name = "ucFuncAnalysis8";
-			this.ucFuncAnalysis8.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis8.TabIndex = 5;
-			// 
 			// tabPage8
 			// 
 			this.tabPage8.Controls.Add(this.ucFuncAnalysis7);
@@ -148,14 +108,6 @@
 			this.tabPage8.TabIndex = 7;
 			this.tabPage8.Text = "Кардиограмма";
 			this.tabPage8.UseVisualStyleBackColor = true;
-			// 
-			// ucFuncAnalysis7
-			// 
-			this.ucFuncAnalysis7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis7.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis7.Name = "ucFuncAnalysis7";
-			this.ucFuncAnalysis7.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis7.TabIndex = 4;
 			// 
 			// tabPage7
 			// 
@@ -168,14 +120,6 @@
 			this.tabPage7.Text = "Шум 2";
 			this.tabPage7.UseVisualStyleBackColor = true;
 			// 
-			// ucFuncAnalysis6
-			// 
-			this.ucFuncAnalysis6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis6.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis6.Name = "ucFuncAnalysis6";
-			this.ucFuncAnalysis6.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis6.TabIndex = 3;
-			// 
 			// tabPage6
 			// 
 			this.tabPage6.Controls.Add(this.ucFuncAnalysis5);
@@ -186,14 +130,6 @@
 			this.tabPage6.TabIndex = 5;
 			this.tabPage6.Text = "Шум 1";
 			this.tabPage6.UseVisualStyleBackColor = true;
-			// 
-			// ucFuncAnalysis5
-			// 
-			this.ucFuncAnalysis5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis5.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis5.Name = "ucFuncAnalysis5";
-			this.ucFuncAnalysis5.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis5.TabIndex = 3;
 			// 
 			// tabPage5
 			// 
@@ -206,14 +142,6 @@
 			this.tabPage5.Text = "Гармонический Процесс";
 			this.tabPage5.UseVisualStyleBackColor = true;
 			// 
-			// ucFuncAnalysis4
-			// 
-			this.ucFuncAnalysis4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis4.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis4.Name = "ucFuncAnalysis4";
-			this.ucFuncAnalysis4.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis4.TabIndex = 3;
-			// 
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.ucFuncAnalysis3);
@@ -224,14 +152,6 @@
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = "Полигармонический Процесс";
 			this.tabPage4.UseVisualStyleBackColor = true;
-			// 
-			// ucFuncAnalysis3
-			// 
-			this.ucFuncAnalysis3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis3.Location = new System.Drawing.Point(3, 3);
-			this.ucFuncAnalysis3.Name = "ucFuncAnalysis3";
-			this.ucFuncAnalysis3.Size = new System.Drawing.Size(922, 634);
-			this.ucFuncAnalysis3.TabIndex = 2;
 			// 
 			// tabPage3
 			// 
@@ -245,14 +165,6 @@
 			this.tabPage3.Text = "График 3";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
-			// ucFuncAnalysis2
-			// 
-			this.ucFuncAnalysis2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis2.Location = new System.Drawing.Point(3, 2);
-			this.ucFuncAnalysis2.Name = "ucFuncAnalysis2";
-			this.ucFuncAnalysis2.Size = new System.Drawing.Size(922, 636);
-			this.ucFuncAnalysis2.TabIndex = 1;
-			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.ucFuncAnalysis1);
@@ -265,14 +177,6 @@
 			this.tabPage2.Text = "График 2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// ucFuncAnalysis1
-			// 
-			this.ucFuncAnalysis1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFuncAnalysis1.Location = new System.Drawing.Point(3, 2);
-			this.ucFuncAnalysis1.Name = "ucFuncAnalysis1";
-			this.ucFuncAnalysis1.Size = new System.Drawing.Size(922, 636);
-			this.ucFuncAnalysis1.TabIndex = 1;
-			// 
 			// tabPage1
 			// 
 			this.tabPage1.Controls.Add(this.funcAnalysis1);
@@ -284,14 +188,6 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "График 4";
 			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
-			// funcAnalysis1
-			// 
-			this.funcAnalysis1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.funcAnalysis1.Location = new System.Drawing.Point(3, 2);
-			this.funcAnalysis1.Name = "funcAnalysis1";
-			this.funcAnalysis1.Size = new System.Drawing.Size(922, 636);
-			this.funcAnalysis1.TabIndex = 0;
 			// 
 			// tabControl1
 			// 
@@ -314,6 +210,94 @@
 			this.tabControl1.Size = new System.Drawing.Size(936, 669);
 			this.tabControl1.TabIndex = 0;
 			// 
+			// funcAnalysis1
+			// 
+			this.funcAnalysis1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.funcAnalysis1.Location = new System.Drawing.Point(3, 2);
+			this.funcAnalysis1.Name = "funcAnalysis1";
+			this.funcAnalysis1.Size = new System.Drawing.Size(922, 636);
+			this.funcAnalysis1.TabIndex = 0;
+			// 
+			// ucFuncAnalysis1
+			// 
+			this.ucFuncAnalysis1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis1.Location = new System.Drawing.Point(3, 2);
+			this.ucFuncAnalysis1.Name = "ucFuncAnalysis1";
+			this.ucFuncAnalysis1.Size = new System.Drawing.Size(922, 636);
+			this.ucFuncAnalysis1.TabIndex = 1;
+			// 
+			// ucFuncAnalysis2
+			// 
+			this.ucFuncAnalysis2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis2.Location = new System.Drawing.Point(3, 2);
+			this.ucFuncAnalysis2.Name = "ucFuncAnalysis2";
+			this.ucFuncAnalysis2.Size = new System.Drawing.Size(922, 636);
+			this.ucFuncAnalysis2.TabIndex = 1;
+			// 
+			// ucFuncAnalysis3
+			// 
+			this.ucFuncAnalysis3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis3.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis3.Name = "ucFuncAnalysis3";
+			this.ucFuncAnalysis3.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis3.TabIndex = 2;
+			// 
+			// ucFuncAnalysis4
+			// 
+			this.ucFuncAnalysis4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis4.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis4.Name = "ucFuncAnalysis4";
+			this.ucFuncAnalysis4.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis4.TabIndex = 3;
+			// 
+			// ucFuncAnalysis5
+			// 
+			this.ucFuncAnalysis5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis5.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis5.Name = "ucFuncAnalysis5";
+			this.ucFuncAnalysis5.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis5.TabIndex = 3;
+			// 
+			// ucFuncAnalysis6
+			// 
+			this.ucFuncAnalysis6.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis6.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis6.Name = "ucFuncAnalysis6";
+			this.ucFuncAnalysis6.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis6.TabIndex = 3;
+			// 
+			// ucFuncAnalysis7
+			// 
+			this.ucFuncAnalysis7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis7.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis7.Name = "ucFuncAnalysis7";
+			this.ucFuncAnalysis7.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis7.TabIndex = 4;
+			// 
+			// ucFuncAnalysis8
+			// 
+			this.ucFuncAnalysis8.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFuncAnalysis8.Location = new System.Drawing.Point(3, 3);
+			this.ucFuncAnalysis8.Name = "ucFuncAnalysis8";
+			this.ucFuncAnalysis8.Size = new System.Drawing.Size(922, 634);
+			this.ucFuncAnalysis8.TabIndex = 5;
+			// 
+			// picture1
+			// 
+			this.picture1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.picture1.Location = new System.Drawing.Point(3, 3);
+			this.picture1.Name = "picture1";
+			this.picture1.Size = new System.Drawing.Size(922, 634);
+			this.picture1.TabIndex = 0;
+			// 
+			// ucFiltration1
+			// 
+			this.ucFiltration1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFiltration1.Location = new System.Drawing.Point(3, 3);
+			this.ucFiltration1.Name = "ucFiltration1";
+			this.ucFiltration1.Size = new System.Drawing.Size(922, 634);
+			this.ucFiltration1.TabIndex = 0;
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -326,7 +310,6 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.tabPage12.ResumeLayout(false);
 			this.tabPage10.ResumeLayout(false);
-			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tabPage9.ResumeLayout(false);
 			this.tabPage8.ResumeLayout(false);
 			this.tabPage7.ResumeLayout(false);
@@ -365,8 +348,7 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private UcFuncAnalysis funcAnalysis1;
 		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private UcFilter ucFilter1;
+		private UcFiltration ucFiltration1;
 
 	}
 }

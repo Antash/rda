@@ -65,6 +65,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcFiltration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcFiltration.Designer.cs">
+      <DependentUpon>UcFiltration.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcPicture.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcFiltration.resx">
+      <DependentUpon>UcFiltration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UcPicture.resx">
       <DependentUpon>UcPicture.cs</DependentUpon>

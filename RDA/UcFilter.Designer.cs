@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.filterParams = new System.Windows.Forms.GroupBox();
+			this.ftype = new System.Windows.Forms.ComboBox();
 			this.bbuild = new System.Windows.Forms.Button();
 			this.mEditor = new RDA.UcParamEditor();
 			this.dtEditor = new RDA.UcParamEditor();
@@ -38,7 +39,6 @@
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.zgc = new ZedGraph.ZedGraphControl();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.ftype = new System.Windows.Forms.ComboBox();
 			this.filterParams.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -60,6 +60,21 @@
 			this.filterParams.TabStop = false;
 			this.filterParams.Text = "filterParams";
 			// 
+			// ftype
+			// 
+			this.ftype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ftype.FormattingEnabled = true;
+			this.ftype.Items.AddRange(new object[] {
+            "Низкие",
+            "Высокие",
+            "Полосовой",
+            "Режекторный"});
+			this.ftype.Location = new System.Drawing.Point(5, 157);
+			this.ftype.Name = "ftype";
+			this.ftype.Size = new System.Drawing.Size(109, 24);
+			this.ftype.TabIndex = 6;
+			// 
 			// bbuild
 			// 
 			this.bbuild.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -70,6 +85,7 @@
 			this.bbuild.TabIndex = 4;
 			this.bbuild.Text = "build";
 			this.bbuild.UseVisualStyleBackColor = true;
+			this.bbuild.Click += new System.EventHandler(this.bbuild_Click);
 			// 
 			// mEditor
 			// 
@@ -162,20 +178,14 @@
 			// comboBox1
 			// 
 			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Items.AddRange(new object[] {
+            "Частотная характеристика",
+            "Импульсная характеристика"});
 			this.comboBox1.Location = new System.Drawing.Point(3, 3);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(185, 24);
+			this.comboBox1.Size = new System.Drawing.Size(238, 24);
 			this.comboBox1.TabIndex = 5;
-			// 
-			// ftype
-			// 
-			this.ftype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.ftype.FormattingEnabled = true;
-			this.ftype.Location = new System.Drawing.Point(5, 157);
-			this.ftype.Name = "ftype";
-			this.ftype.Size = new System.Drawing.Size(109, 24);
-			this.ftype.TabIndex = 6;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
 			// UcFilter
 			// 
