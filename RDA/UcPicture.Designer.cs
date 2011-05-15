@@ -29,19 +29,22 @@
 		private void InitializeComponent()
 		{
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.ucFilter1 = new RDA.UcFilter();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pictureBox1
@@ -55,17 +58,6 @@
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// pictureBox2
-			// 
-			this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox2.Location = new System.Drawing.Point(312, 41);
-			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(315, 392);
-			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this.pictureBox2.TabIndex = 1;
-			this.pictureBox2.TabStop = false;
-			// 
 			// tableLayoutPanel1
 			// 
 			this.tableLayoutPanel1.ColumnCount = 2;
@@ -73,8 +65,8 @@
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.79365F));
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -84,10 +76,6 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(630, 436);
 			this.tableLayoutPanel1.TabIndex = 2;
-			// 
-			// openFileDialog1
-			// 
-			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
 			// panel1
 			// 
@@ -99,15 +87,15 @@
 			this.panel1.Size = new System.Drawing.Size(303, 32);
 			this.panel1.TabIndex = 4;
 			// 
-			// button2
+			// button3
 			// 
-			this.button2.Location = new System.Drawing.Point(0, 0);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(137, 32);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "build gistogramm";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
+			this.button3.Location = new System.Drawing.Point(96, 0);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(87, 32);
+			this.button3.TabIndex = 3;
+			this.button3.Text = "filter";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// button1
 			// 
@@ -128,28 +116,67 @@
 			this.panel2.Size = new System.Drawing.Size(315, 32);
 			this.panel2.TabIndex = 5;
 			// 
-			// button3
+			// button2
 			// 
-			this.button3.Location = new System.Drawing.Point(96, 0);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(87, 32);
-			this.button3.TabIndex = 3;
-			this.button3.Text = "filter";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
+			this.button2.Location = new System.Drawing.Point(0, 0);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(137, 32);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "build gistogramm";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
-			// Picture
+			// openFileDialog1
+			// 
+			this.openFileDialog1.FileName = "openFileDialog1";
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.ColumnCount = 1;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel2.Controls.Add(this.pictureBox2, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.ucFilter1, 0, 1);
+			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(312, 41);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 2;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.87755F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.12245F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(315, 392);
+			this.tableLayoutPanel2.TabIndex = 6;
+			// 
+			// pictureBox2
+			// 
+			this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+			this.pictureBox2.Name = "pictureBox2";
+			this.pictureBox2.Size = new System.Drawing.Size(309, 166);
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.pictureBox2.TabIndex = 1;
+			this.pictureBox2.TabStop = false;
+			// 
+			// ucFilter1
+			// 
+			this.ucFilter1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFilter1.Location = new System.Drawing.Point(3, 175);
+			this.ucFilter1.Name = "ucFilter1";
+			this.ucFilter1.Size = new System.Drawing.Size(309, 214);
+			this.ucFilter1.TabIndex = 2;
+			// 
+			// UcPicture
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.tableLayoutPanel1);
-			this.Name = "Picture";
+			this.Name = "UcPicture";
 			this.Size = new System.Drawing.Size(630, 436);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+			this.tableLayoutPanel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -157,7 +184,6 @@
 		#endregion
 
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.Panel panel1;
@@ -165,5 +191,8 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.PictureBox pictureBox2;
+		private UcFilter ucFilter1;
 	}
 }

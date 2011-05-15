@@ -14,6 +14,11 @@ namespace RDA
 	{
 		public event FilterChangedEventHandler FilterChanged;
 
+		public double[] FilterFunc
+		{
+			get { return _filter.Fx[1]; }
+		}
+
 		public void InvokeFilterChanged(FilterChangedEventHandlerArgs e)
 		{
 			FilterChangedEventHandler handler = FilterChanged;

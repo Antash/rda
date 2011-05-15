@@ -30,7 +30,7 @@ namespace RDA
 
 		public void FilterImg()
 		{
-			var filter = Filter.ResultBsw(10, 50, 100, 0.001);
+			var filter = ucFilter1.FilterFunc;
 			for (int i = 0; i < _p.Width; i++)
 				_f[i] = Algorithms.Convolution(_f[i], filter);
 
