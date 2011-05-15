@@ -1,6 +1,6 @@
 ﻿namespace RDA
 {
-	partial class Picture
+	partial class UcPicture
 	{
 		/// <summary> 
 		/// Required designer variable.
