@@ -65,19 +65,31 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Picture.cs">
+    <Compile Include="UcPicture.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Picture.Designer.cs">
-      <DependentUpon>Picture.cs</DependentUpon>
+    <Compile Include="UcPicture.Designer.cs">
+      <DependentUpon>UcPicture.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcFilter.Designer.cs">
+      <DependentUpon>UcFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcFuncAnalysis.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UcFuncAnalysis.Designer.cs">
       <DependentUpon>UcFuncAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcParamEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcParamEditor.Designer.cs">
+      <DependentUpon>UcParamEditor.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FrmFuncViewer.resx">
       <DependentUpon>FrmFuncViewer.cs</DependentUpon>
@@ -85,8 +97,8 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Picture.resx">
-      <DependentUpon>Picture.cs</DependentUpon>
+    <EmbeddedResource Include="UcPicture.resx">
+      <DependentUpon>UcPicture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,8 +110,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UcFilter.resx">
+      <DependentUpon>UcFilter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcFuncAnalysis.resx">
       <DependentUpon>UcFuncAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcParamEditor.resx">
+      <DependentUpon>UcParamEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

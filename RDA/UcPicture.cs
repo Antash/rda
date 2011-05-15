@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace RDA
 {
-	public partial class Picture : UserControl
+	public partial class UcPicture : UserControl
 	{
 		private Bitmap _p;
 
 		private double[][] _f;
 
-		public Picture()
+		public UcPicture()
 		{
 			InitializeComponent();
 		}
