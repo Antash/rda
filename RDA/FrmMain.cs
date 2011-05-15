@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
-
 namespace RDA
 {
 	public partial class FrmMain : Form
