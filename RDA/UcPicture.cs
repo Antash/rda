@@ -8,6 +8,7 @@ namespace RDA
 	public partial class UcPicture : UserControl
 	{
 		private Bitmap _p;
+		private Histogramm hRed;
 
 		private double[][] _f;
 
@@ -47,23 +48,41 @@ namespace RDA
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			Histogramm hRed = new Histogramm(pictureBox1.Image, 0);
+			hRed = new Histogramm((Bitmap) pictureBox1.Image, 0);
 			hRed.DrawHistogramm(ref pictureBox2);
 		}
 
 		public class Histogramm
 		{
-			Image histogramFor;
+			Bitmap histogramFor;
 			int chanel;
 			int[] histogrammArray;
+			int[] PhistogrammArray;
 
-			public Histogramm(Image SourceImage, int Chanel)
+			public Histogramm(Bitmap SourceImage, int Chanel)
 			{
 				histogramFor = SourceImage;
 				if (Chanel > 2)
 					throw new Exception("Chanel index must be between 0..2");
 				chanel = Chanel;
 				BuildArray();
+				buildPhist();
+			}
+
+			void buildPhist()
+			{
+				PhistogrammArray = new int[256];
+				int currsumm = 0;
+				for (int i = 0; i < 256; i++)
+				{
+					currsumm += histogrammArray[i];
+					PhistogrammArray[i] = currsumm;
+				}
+				double divisor = currsumm / 255.0;
+				for (int i = 0; i < 256; i++)
+				{
+					PhistogrammArray[i] = (int) (PhistogrammArray[i] / divisor);
+				}
 			}
 
 			void BuildArray()
@@ -88,23 +107,51 @@ namespace RDA
 					}
 			}
 
+			public void DrawPHistogramm(ref PictureBox DrawTo)
+			{
+				Bitmap bmp = new Bitmap(DrawTo.Width, DrawTo.Height);
+				Graphics g = Graphics.FromImage(bmp);
+				Brush HBrush = Brushes.Blue;
+				//switch (chanel)
+				//{
+				//    case 0:
+				//        HBrush = Brushes.Red;
+				//        break;
+				//    case 1:
+				//        HBrush = Brushes.Green;
+				//        break;
+				//    case 2:
+				//        HBrush = Brushes.Blue;
+				//        break;
+				//}
+				//Вычеслим относительные коэффициенты
+				float DeltaHeight = (float)bmp.Height / (float)PhistogrammArray.Max();
+				float DeltaWidth = (float)bmp.Width / 256;
+				//строим
+				for (int i = 0; i < 256; i++)
+				{
+					g.FillRectangle(HBrush, (float)i * DeltaWidth, bmp.Height - (float)PhistogrammArray[i] * DeltaHeight, DeltaWidth, bmp.Height);
+				}
+				DrawTo.Image = bmp;
+			}
+
 			public void DrawHistogramm(ref PictureBox DrawTo)
 			{
 				Bitmap bmp = new Bitmap(DrawTo.Width, DrawTo.Height);
 				Graphics g = Graphics.FromImage(bmp);
 				Brush HBrush = Brushes.Black;
-				switch (chanel)
-				{
-					case 0:
-						HBrush = Brushes.Red;
-						break;
-					case 1:
-						HBrush = Brushes.Green;
-						break;
-					case 2:
-						HBrush = Brushes.Blue;
-						break;
-				}
+				//switch (chanel)
+				//{
+				//    case 0:
+				//        HBrush = Brushes.Red;
+				//        break;
+				//    case 1:
+				//        HBrush = Brushes.Green;
+				//        break;
+				//    case 2:
+				//        HBrush = Brushes.Blue;
+				//        break;
+				//}
 				//Вычеслим относительные коэффициенты
 				float DeltaHeight = (float)bmp.Height / (float)histogrammArray.Max();
 				float DeltaWidth = (float)bmp.Width / 256;
@@ -115,6 +162,19 @@ namespace RDA
 				}
 				DrawTo.Image = bmp;
 			}
+
+			public Bitmap Evaluate()
+			{
+				var bmp = new Bitmap(histogramFor.Width, histogramFor.Height);
+				for (int i = 0; i < histogramFor.Width; i++)
+					for (int j = 0; j < histogramFor.Height; j++)
+					{
+						int r = histogramFor.GetPixel(i, j).R;
+						int nr = PhistogrammArray[r];
+						bmp.SetPixel(i, j, Color.FromArgb(nr, nr, nr));
+					}
+				return bmp;
+			}
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -123,13 +183,17 @@ namespace RDA
 			openFileDialog1.ShowDialog();
 			_p = new Bitmap(openFileDialog1.FileName);
 			pictureBox1.Image = _p;
-			_f = new double[_p.Width][];
-			for (int i = 0; i < _p.Width; i++)
-				_f[i] = new double[_p.Height];
-			for (int i = 0; i < _p.Width; i++)
-				for (int j = 0; j < _p.Height; j++)
-					_f[i][j] = _p.GetPixel(i, j).R;
+			convertFromImage(_p);
+		}
 
+		void convertFromImage(Bitmap img)
+		{
+			_f = new double[img.Width][];
+			for (int i = 0; i < img.Width; i++)
+				_f[i] = new double[img.Height];
+			for (int i = 0; i < img.Width; i++)
+				for (int j = 0; j < img.Height; j++)
+					_f[i][j] = img.GetPixel(i, j).R;
 		}
 
 		private void button3_Click(object sender, EventArgs e)
@@ -140,7 +204,18 @@ namespace RDA
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			//TODO : evaluation code here
+			hRed = new Histogramm((Bitmap)pictureBox1.Image, 0);
+			var bmp = hRed.Evaluate();
+			pictureBox1.Image = bmp;
+			convertFromImage(bmp);
+			_p = bmp;
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			hRed = new Histogramm((Bitmap)pictureBox1.Image, 0);
+			hRed.DrawPHistogramm(ref pictureBox2);
+			//hRed.DrawHistogramm(ref pictureBox2);
 		}
 	}
 }
