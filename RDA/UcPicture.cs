@@ -137,5 +137,10 @@ namespace RDA
 			FilterImg();
 			Converttoimage();
 		}
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			//TODO : evaluation code here
+		}
 	}
 }

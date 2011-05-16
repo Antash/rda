@@ -35,10 +35,11 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.button2 = new System.Windows.Forms.Button();
-			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.ucFilter1 = new RDA.UcFilter();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.button4 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -109,6 +110,7 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.button4);
 			this.panel2.Controls.Add(this.button2);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(312, 3);
@@ -125,10 +127,6 @@
 			this.button2.Text = "build gistogramm";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// openFileDialog1
-			// 
-			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
 			// tableLayoutPanel2
 			// 
@@ -151,7 +149,7 @@
 			this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pictureBox2.Location = new System.Drawing.Point(3, 3);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(309, 166);
+			this.pictureBox2.Size = new System.Drawing.Size(309, 165);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.pictureBox2.TabIndex = 1;
 			this.pictureBox2.TabStop = false;
@@ -159,10 +157,24 @@
 			// ucFilter1
 			// 
 			this.ucFilter1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFilter1.Location = new System.Drawing.Point(3, 175);
+			this.ucFilter1.Location = new System.Drawing.Point(3, 174);
 			this.ucFilter1.Name = "ucFilter1";
-			this.ucFilter1.Size = new System.Drawing.Size(309, 214);
+			this.ucFilter1.Size = new System.Drawing.Size(309, 215);
 			this.ucFilter1.TabIndex = 2;
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.FileName = "openFileDialog1";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(143, 0);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(151, 32);
+			this.button4.TabIndex = 4;
+			this.button4.Text = "evaluate gistogramm";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
 			// 
 			// UcPicture
 			// 
@@ -194,5 +206,6 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private UcFilter ucFilter1;
+		private System.Windows.Forms.Button button4;
 	}
 }
