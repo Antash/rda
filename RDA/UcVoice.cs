@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using NAudio.Wave;
 
@@ -21,12 +15,20 @@ namespace RDA
 		private WaveFileWriter writer;
 		private WaveFormat wf;
 		private string filename = "tmp.wav";
+
+		private double[] signal;
+		private List<float> rawSignal;
+
 		public UcVoice()
 		{
 			InitializeComponent();
-			
+
+			rawSignal = new List<float>(10000);
+
 			wl = new WavLib();
-			wf = new WaveFormat(16000, 16, 2);
+			wf = new WaveFormat(8000, 16, 1);
+
+			ucFilter1.InitParams(1.0/8000, 64, 700, 1500);
 
 			var idev = wl.GetIDev();
 			var odev = wl.GetODev();
@@ -44,7 +46,6 @@ namespace RDA
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			
 			writer = new WaveFileWriter(filename, wf);
 			waveIn = new WaveIn {DeviceNumber = selectedDevice, WaveFormat = wf};
 			waveIn.DataAvailable += waveIn_DataAvailable;
@@ -63,6 +64,16 @@ namespace RDA
 
 		void waveIn_DataAvailable(object sender, WaveInEventArgs e)
 		{
+			byte[] buffer = e.Buffer;
+
+			for (int index = 0; index < e.BytesRecorded; index += 2)
+			{
+				short sample = (short) ((buffer[index + 1] << 8) |
+					                    buffer[index]);
+				float sample32 = sample/32768f;
+				rawSignal.Add(sample32);
+			}
+
 			writer.WriteData(e.Buffer, 0, e.BytesRecorded);
 		}
 
@@ -100,7 +111,35 @@ namespace RDA
 
 		private void button4_Click(object sender, EventArgs e)
 		{
+			ConvertToSignal();
 
+			var filter = ucFilter1.FilterFunc;
+			var filtered = Algorithms.Convolution(signal, filter);
+
+			ConvertFromSignal(filtered);
+		}
+
+		private void ConvertFromSignal(double[] filtered)
+		{
+			writer = new WaveFileWriter(filename, wf);
+			foreach (float v in filtered)
+			{
+				var buffer = new byte[2];
+
+				buffer[0] = (byte)((short)(v*32768f) & 0x00FF);
+				buffer[1] = (byte)((short)(v*32768f) >> 8);
+
+				writer.WriteData(buffer, 0, 2);
+			}
+			writer.Close();
+		}
+
+		private void ConvertToSignal()
+		{
+			signal = new double[rawSignal.Count];
+			int i = 0;
+			foreach (float v in rawSignal)
+				signal[i++] = v;
 		}
 	}
 }

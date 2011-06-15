@@ -33,7 +33,7 @@ namespace RDA
 
 			f1editor.ParamName = "f1";
 			f1editor.ParamValue = 10.ToString();
-			f2editor.ParamName = "f1";
+			f2editor.ParamName = "f2";
 			f2editor.ParamValue = 60.ToString();
 			mEditor.ParamName = "m";
 			mEditor.ParamValue = 100.ToString();
@@ -44,6 +44,18 @@ namespace RDA
 			InvokeFilterChanged(new FilterChangedEventHandlerArgs(_filter));
 
 			comboBox1.SelectedIndex = 0;
+		}
+
+		public void InitParams(double dt, int m, double f1, double f2)
+		{
+			f1editor.ParamValue = f1.ToString();
+			f2editor.ParamValue = f2.ToString();
+			mEditor.ParamValue = m.ToString();
+			dtEditor.ParamValue = dt.ToString();
+
+			_filter = new Func(MakeFilter());
+			InvokeFilterChanged(new FilterChangedEventHandlerArgs(_filter));
+			comboBox1_SelectedIndexChanged(null, null);
 		}
 
 		private double[] MakeFilter()
