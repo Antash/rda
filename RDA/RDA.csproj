@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>dll\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -97,6 +100,13 @@
     <Compile Include="UcParamEditor.Designer.cs">
       <DependentUpon>UcParamEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UcVoice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcVoice.Designer.cs">
+      <DependentUpon>UcVoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WavLib.cs" />
     <EmbeddedResource Include="FrmFuncViewer.resx">
       <DependentUpon>FrmFuncViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UcParamEditor.resx">
       <DependentUpon>UcParamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcVoice.resx">
+      <DependentUpon>UcVoice.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

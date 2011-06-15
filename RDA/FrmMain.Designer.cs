@@ -40,6 +40,7 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage11 = new System.Windows.Forms.TabPage();
 			this.funcAnalysis1 = new RDA.UcFuncAnalysis();
 			this.ucFuncAnalysis1 = new RDA.UcFuncAnalysis();
 			this.ucFuncAnalysis2 = new RDA.UcFuncAnalysis();
@@ -49,8 +50,9 @@
 			this.ucFuncAnalysis6 = new RDA.UcFuncAnalysis();
 			this.ucFuncAnalysis7 = new RDA.UcFuncAnalysis();
 			this.ucFuncAnalysis8 = new RDA.UcFuncAnalysis();
-			this.picture1 = new RDA.UcPicture();
 			this.ucFiltration1 = new RDA.UcFiltration();
+			this.picture1 = new RDA.UcPicture();
+			this.ucVoice1 = new RDA.UcVoice();
 			this.tabPage12.SuspendLayout();
 			this.tabPage10.SuspendLayout();
 			this.tabPage9.SuspendLayout();
@@ -63,6 +65,7 @@
 			this.tabPage2.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			this.tabPage11.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabPage12
@@ -202,6 +205,7 @@
 			this.tabControl1.Controls.Add(this.tabPage9);
 			this.tabControl1.Controls.Add(this.tabPage10);
 			this.tabControl1.Controls.Add(this.tabPage12);
+			this.tabControl1.Controls.Add(this.tabPage11);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -209,6 +213,17 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(936, 669);
 			this.tabControl1.TabIndex = 0;
+			// 
+			// tabPage11
+			// 
+			this.tabPage11.Controls.Add(this.ucVoice1);
+			this.tabPage11.Location = new System.Drawing.Point(4, 25);
+			this.tabPage11.Name = "tabPage11";
+			this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage11.Size = new System.Drawing.Size(928, 640);
+			this.tabPage11.TabIndex = 12;
+			this.tabPage11.Text = "голос";
+			this.tabPage11.UseVisualStyleBackColor = true;
 			// 
 			// funcAnalysis1
 			// 
@@ -282,6 +297,14 @@
 			this.ucFuncAnalysis8.Size = new System.Drawing.Size(922, 634);
 			this.ucFuncAnalysis8.TabIndex = 5;
 			// 
+			// ucFiltration1
+			// 
+			this.ucFiltration1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucFiltration1.Location = new System.Drawing.Point(3, 3);
+			this.ucFiltration1.Name = "ucFiltration1";
+			this.ucFiltration1.Size = new System.Drawing.Size(922, 634);
+			this.ucFiltration1.TabIndex = 0;
+			// 
 			// picture1
 			// 
 			this.picture1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -290,13 +313,13 @@
 			this.picture1.Size = new System.Drawing.Size(922, 634);
 			this.picture1.TabIndex = 0;
 			// 
-			// ucFiltration1
+			// ucVoice1
 			// 
-			this.ucFiltration1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.ucFiltration1.Location = new System.Drawing.Point(3, 3);
-			this.ucFiltration1.Name = "ucFiltration1";
-			this.ucFiltration1.Size = new System.Drawing.Size(922, 634);
-			this.ucFiltration1.TabIndex = 0;
+			this.ucVoice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ucVoice1.Location = new System.Drawing.Point(3, 3);
+			this.ucVoice1.Name = "ucVoice1";
+			this.ucVoice1.Size = new System.Drawing.Size(922, 634);
+			this.ucVoice1.TabIndex = 0;
 			// 
 			// FrmMain
 			// 
@@ -320,6 +343,7 @@
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
+			this.tabPage11.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -349,6 +373,8 @@
 		private UcFuncAnalysis funcAnalysis1;
 		private System.Windows.Forms.TabControl tabControl1;
 		private UcFiltration ucFiltration1;
+		private System.Windows.Forms.TabPage tabPage11;
+		private UcVoice ucVoice1;
 
 	}
 }
