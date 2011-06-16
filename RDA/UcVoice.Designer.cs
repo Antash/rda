@@ -37,6 +37,8 @@
 			this.comboBox2 = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// ucFilter1
@@ -87,9 +89,9 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(6, 386);
+			this.button4.Location = new System.Drawing.Point(370, 386);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(64, 45);
+			this.button4.Size = new System.Drawing.Size(99, 30);
 			this.button4.TabIndex = 5;
 			this.button4.Text = "apply filter";
 			this.button4.UseVisualStyleBackColor = true;
@@ -122,10 +124,32 @@
 			this.label2.TabIndex = 8;
 			this.label2.Text = "playback device";
 			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(6, 386);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(75, 30);
+			this.button5.TabIndex = 9;
+			this.button5.Text = "open";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// button6
+			// 
+			this.button6.Location = new System.Drawing.Point(6, 422);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(75, 30);
+			this.button6.TabIndex = 10;
+			this.button6.Text = "save";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// UcVoice
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.button6);
+			this.Controls.Add(this.button5);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.comboBox2);
@@ -153,5 +177,7 @@
 		private System.Windows.Forms.ComboBox comboBox2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button6;
 	}
 }
