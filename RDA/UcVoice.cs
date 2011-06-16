@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using NAudio.Wave;
 
@@ -14,7 +15,7 @@ namespace RDA
 		private WaveOut waveOut;
 		private WaveFileWriter writer;
 		private WaveFormat wf;
-		private string filename = "tmp.wav";
+		private string dfilename = "tmp.wav";
 
 		private double[] signal;
 		private List<float> rawSignal;
@@ -46,7 +47,7 @@ namespace RDA
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			writer = new WaveFileWriter(filename, wf);
+			writer = new WaveFileWriter(dfilename, wf);
 			waveIn = new WaveIn {DeviceNumber = selectedDevice, WaveFormat = wf};
 			waveIn.DataAvailable += waveIn_DataAvailable;
 			waveIn.StartRecording();
@@ -86,7 +87,7 @@ namespace RDA
 
 		private void button3_Click(object sender, EventArgs e)
 		{
-			WaveStream outputStream = CreateInputStream(filename);
+			WaveStream outputStream = CreateInputStream(dfilename);
 			waveOut = new WaveOut();
 			waveOut.DeviceNumber = selectedPBDevice;
 			waveOut.Init(outputStream);
@@ -111,17 +112,34 @@ namespace RDA
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			ConvertToSignal();
+			makeArray();
 
 			var filter = ucFilter1.FilterFunc;
 			var filtered = Algorithms.Convolution(signal, filter);
 
-			ConvertFromSignal(filtered);
+			ConvertFromSignal(filtered, dfilename);
 		}
 
-		private void ConvertFromSignal(double[] filtered)
+		public static List<float> GetSamples(string fileName)
 		{
-			writer = new WaveFileWriter(filename, wf);
+			var res = new List<float>();
+			using (var ms = new WaveFileReader(fileName))
+			{
+				if (ms.WaveFormat.SampleRate != 8000 || ms.WaveFormat.Channels != 1 || ms.WaveFormat.BitsPerSample != 16)
+					throw new FormatException();
+				for (int i = 0; i < ms.Length / 4; i++)
+				{
+					float sample;
+					if (ms.TryReadFloat(out sample))
+						res.Add(sample);
+				}
+			}
+			return res;
+		}
+
+		private void ConvertFromSignal(double[] filtered, string fileName)
+		{
+			writer = new WaveFileWriter(fileName, wf);
 			foreach (float v in filtered)
 			{
 				var buffer = new byte[2];
@@ -134,12 +152,39 @@ namespace RDA
 			writer.Close();
 		}
 
-		private void ConvertToSignal()
+		private void ConvertToSignal(string fileName)
+		{
+			GetSamples(fileName);
+			makeArray();
+		}
+
+		void makeArray()
 		{
 			signal = new double[rawSignal.Count];
 			int i = 0;
 			foreach (float v in rawSignal)
 				signal[i++] = v;
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.DefaultExt = "wav";
+			ofd.Filter = "(wav)|*.wav";
+			ofd.FileName = "test";
+			ofd.ShowDialog(); 
+			if (File.Exists(ofd.FileName))
+				ConvertToSignal(ofd.FileName);
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.DefaultExt = "wav";
+			sfd.Filter = "(wav)|*.wav";
+			sfd.FileName = "test";
+			sfd.ShowDialog();
+			ConvertFromSignal(signal, sfd.FileName);
 		}
 	}
 }
